@@ -24,13 +24,7 @@ public class Game1 : Core
     protected override void LoadContent()
     {
         // Load atlas texture
-        Texture2D atlasTexture = Content.Load<Texture2D>("images/atlas");
-
-        // Create TextureAtlas
-        TextureAtlas atlas = new TextureAtlas(atlasTexture);
-
-        // Add dwarf region to atlas
-        atlas.AddRegion("dwarf", 0, 192, 48, 48);
+        TextureAtlas atlas = TextureAtlas.FromFile(Content, "images/atlas-definition.xml");
 
         // Get dwarf region from atlas
         _dwarf = atlas.GetRegion("dwarf");

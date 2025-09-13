@@ -68,3 +68,4 @@ C:\Users\suter\01_MonoGame\DwarfDownUnder\DwarfDownUnder\obj\Debug\net8.0\DwarfD
 C:\Users\suter\01_MonoGame\DwarfDownUnder\DwarfDownUnder\obj\Debug\net8.0\ref\DwarfDownUnder.dll
 C:\Users\suter\01_MonoGame\DwarfDownUnder\DwarfDownUnder\bin\Debug\net8.0\Content\images\logo.xnb
 C:\Users\suter\01_MonoGame\DwarfDownUnder\DwarfDownUnder\bin\Debug\net8.0\Content\images\atlas.xnb
+C:\Users\suter\01_MonoGame\DwarfDownUnder\DwarfDownUnder\bin\Debug\net8.0\Content\images\atlas-definition.xml
