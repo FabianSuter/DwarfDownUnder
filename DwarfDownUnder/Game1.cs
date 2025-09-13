@@ -2,13 +2,14 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGameLibrary;
+using MonoGameLibrary.Graphics;
 
 namespace DwarfDownUnder;
 
 public class Game1 : Core
 {
-    // MonoGame logo (temporary)
-    private Texture2D _logo;
+    // TextureRegion of dwarf
+    private TextureRegion _dwarf;
 
     public Game1() : base("Dwarf Down Under", 1280, 720, false)
     {
@@ -17,26 +18,28 @@ public class Game1 : Core
 
     protected override void Initialize()
     {
-        // Add your initialization logic here
-
         base.Initialize();
     }
 
     protected override void LoadContent()
     {
-        // use this.Content to load your game content here
+        // Load atlas texture
+        Texture2D atlasTexture = Content.Load<Texture2D>("images/atlas");
 
-        _logo = Content.Load<Texture2D>("images/logo");
+        // Create TextureAtlas
+        TextureAtlas atlas = new TextureAtlas(atlasTexture);
 
-        base.LoadContent();
+        // Add dwarf region to atlas
+        atlas.AddRegion("dwarf", 0, 192, 48, 48);
+
+        // Get dwarf region from atlas
+        _dwarf = atlas.GetRegion("dwarf");
     }
 
     protected override void Update(GameTime gameTime)
     {
         if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();
-
-        // Add your update logic here
 
         base.Update(gameTime);
     }
@@ -46,10 +49,10 @@ public class Game1 : Core
         GraphicsDevice.Clear(Color.CornflowerBlue);
 
         // Begin the sprite batch to prepare for rendering.
-        SpriteBatch.Begin();
+        SpriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
-        // Draw the logo texture
-        SpriteBatch.Draw(_logo, Vector2.Zero, Color.White);
+        // Draw dwarf texture
+        _dwarf.Draw(SpriteBatch, Vector2.Zero, Color.White, 0.0f, Vector2.One, 4.0f, SpriteEffects.None, 0.0f);
 
         // Always end the sprite batch when finished.
         SpriteBatch.End();
