@@ -9,7 +9,7 @@ namespace DwarfDownUnder;
 public class Game1 : Core
 {
     // Sprite of dwarf
-    private Sprite _dwarf;
+    private AnimatedSprite _dwarf;
 
     public Game1() : base("Dwarf Down Under", 1280, 720, false)
     {
@@ -27,14 +27,17 @@ public class Game1 : Core
         TextureAtlas atlas = TextureAtlas.FromFile(Content, "images/atlas-definition.xml");
 
         // Create dwarf sprite from atlas
-        _dwarf = atlas.CreateSprite("dwarf");
-        _dwarf.Scale = new Vector2(4.0f, 4.0f);
+        _dwarf = atlas.CreateAnimatedSprite("dwarfB-front-idle");
+        _dwarf.Scale = new Vector2(3.0f, 3.0f);
     }
 
     protected override void Update(GameTime gameTime)
     {
         if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();
+
+        // Update dwarf sprite
+        _dwarf.Update(gameTime);
 
         base.Update(gameTime);
     }

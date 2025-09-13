@@ -2,6 +2,74 @@
 <TextureAtlas>
     <Texture>images/atlas</Texture>
     <Regions>
-        <Region name="dwarf" x="0" y="192" width="48" height="48" />
+        <Region name="dwarfB-0" x="0" y="192" width="48" height="48" />
+        <Region name="dwarfB-1" x="48" y="192" width="48" height="48" />
+        <Region name="dwarfB-2" x="96" y="192" width="48" height="48" />
+        <Region name="dwarfB-3" x="144" y="192" width="48" height="48" />
+        <Region name="dwarfB-4" x="0" y="240" width="48" height="48" />
+        <Region name="dwarfB-5" x="48" y="240" width="48" height="48" />
+        <Region name="dwarfB-6" x="96" y="240" width="48" height="48" />
+        <Region name="dwarfB-7" x="144" y="240" width="48" height="48" />
+        <Region name="dwarfB-8" x="0" y="288" width="48" height="48" />
+        <Region name="dwarfB-9" x="48" y="288" width="48" height="48" />
+        <Region name="dwarfB-10" x="96" y="288" width="48" height="48" />
+        <Region name="dwarfB-11" x="144" y="288" width="48" height="48" />
+        <Region name="dwarfB-12" x="0" y="336" width="48" height="48" />
+        <Region name="dwarfB-13" x="48" y="336" width="48" height="48" />
+        <Region name="dwarfB-14" x="96" y="336" width="48" height="48" />
+        <Region name="dwarfB-15" x="144" y="336" width="48" height="48" />
+        <Region name="dwarfB-16" x="0" y="384" width="48" height="48" />
+        <Region name="dwarfB-17" x="48" y="384" width="48" height="48" />
+        <Region name="dwarfB-18" x="96" y="384" width="48" height="48" />
+        <Region name="dwarfB-19" x="144" y="384" width="48" height="48" />
+        <Region name="dwarfB-20" x="0" y="432" width="48" height="48" />
+        <Region name="dwarfB-21" x="48" y="432" width="48" height="48" />
+        <Region name="dwarfB-22" x="96" y="432" width="48" height="48" />
+        <Region name="dwarfB-23" x="144" y="432" width="48" height="48" />
+        <Region name="dwarfB-24" x="0" y="480" width="48" height="48" />
+        <Region name="dwarfB-25" x="48" y="480" width="48" height="48" />
+        <Region name="dwarfB-26" x="96" y="480" width="48" height="48" />
+        <Region name="dwarfB-27" x="144" y="480" width="48" height="48" />
     </Regions>
+    <Animations>
+        <Animation name="dwarfB-front-idle" delay="200">
+            <Frame region="dwarfB-0" />
+            <Frame region="dwarfB-2" />
+        </Animation>
+        <Animation name="dwarfB-front-walk" delay="200">
+            <Frame region="dwarfB-0" />
+            <Frame region="dwarfB-1" />
+            <Frame region="dwarfB-0" />
+            <Frame region="dwarfB-3" />
+            <Frame region="dwarfB-0" />
+        </Animation>
+        <Animation name="dwarfB-back-idle" delay="200">
+            <Frame region="dwarfB-4" />
+            <Frame region="dwarfB-6" />
+        </Animation>
+        <Animation name="dwarfB-back-walk" delay="200">
+            <Frame region="dwarfB-4" />
+            <Frame region="dwarfB-5" />
+            <Frame region="dwarfB-4" />
+            <Frame region="dwarfB-7" />
+            <Frame region="dwarfB-4" />
+        </Animation>
+        <Animation name="dwarfB-side-idle" delay="200">
+            <Frame region="dwarfB-8" />
+            <Frame region="dwarfB-10" />
+        </Animation>
+        <Animation name="dwarfB-side-walk" delay="200">
+            <Frame region="dwarfB-8" />
+            <Frame region="dwarfB-9" />
+            <Frame region="dwarfB-8" />
+            <Frame region="dwarfB-11" />
+            <Frame region="dwarfB-8" />
+        </Animation>
+        <Animation name="dwarfB-die" delay="200">
+            <Frame region="dwarfB-12" />
+            <Frame region="dwarfB-13" />
+            <Frame region="dwarfB-14" />
+            <Frame region="dwarfB-15" />
+        </Animation>
+    </Animations>
 </TextureAtlas>
