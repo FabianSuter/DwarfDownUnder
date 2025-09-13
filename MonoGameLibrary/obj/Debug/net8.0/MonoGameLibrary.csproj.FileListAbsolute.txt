@@ -1,0 +1,13 @@
+C:\Users\suter\OneDrive - OST\OST\Semester_5\Advanced_C#_APR400\000_Assignment_GameProject\MG\MonoGameLibrary\bin\Debug\net8.0\MonoGameLibrary.deps.json
+C:\Users\suter\OneDrive - OST\OST\Semester_5\Advanced_C#_APR400\000_Assignment_GameProject\MG\MonoGameLibrary\bin\Debug\net8.0\MonoGameLibrary.dll
+C:\Users\suter\OneDrive - OST\OST\Semester_5\Advanced_C#_APR400\000_Assignment_GameProject\MG\MonoGameLibrary\bin\Debug\net8.0\MonoGameLibrary.pdb
+C:\Users\suter\OneDrive - OST\OST\Semester_5\Advanced_C#_APR400\000_Assignment_GameProject\MG\MonoGameLibrary\obj\Debug\net8.0\MonoGameLibrary.csproj.AssemblyReference.cache
+C:\Users\suter\OneDrive - OST\OST\Semester_5\Advanced_C#_APR400\000_Assignment_GameProject\MG\MonoGameLibrary\obj\Debug\net8.0\MonoGameLibrary.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\suter\OneDrive - OST\OST\Semester_5\Advanced_C#_APR400\000_Assignment_GameProject\MG\MonoGameLibrary\obj\Debug\net8.0\MonoGameLibrary.AssemblyInfoInputs.cache
+C:\Users\suter\OneDrive - OST\OST\Semester_5\Advanced_C#_APR400\000_Assignment_GameProject\MG\MonoGameLibrary\obj\Debug\net8.0\MonoGameLibrary.AssemblyInfo.cs
+C:\Users\suter\OneDrive - OST\OST\Semester_5\Advanced_C#_APR400\000_Assignment_GameProject\MG\MonoGameLibrary\obj\Debug\net8.0\MonoGameLibrary.csproj.CoreCompileInputs.cache
+C:\Users\suter\OneDrive - OST\OST\Semester_5\Advanced_C#_APR400\000_Assignment_GameProject\MG\MonoGameLibrary\obj\Debug\net8.0\MonoGameLibrary.sourcelink.json
+C:\Users\suter\OneDrive - OST\OST\Semester_5\Advanced_C#_APR400\000_Assignment_GameProject\MG\MonoGameLibrary\obj\Debug\net8.0\MonoGameLibrary.dll
+C:\Users\suter\OneDrive - OST\OST\Semester_5\Advanced_C#_APR400\000_Assignment_GameProject\MG\MonoGameLibrary\obj\Debug\net8.0\refint\MonoGameLibrary.dll
+C:\Users\suter\OneDrive - OST\OST\Semester_5\Advanced_C#_APR400\000_Assignment_GameProject\MG\MonoGameLibrary\obj\Debug\net8.0\MonoGameLibrary.pdb
+C:\Users\suter\OneDrive - OST\OST\Semester_5\Advanced_C#_APR400\000_Assignment_GameProject\MG\MonoGameLibrary\obj\Debug\net8.0\ref\MonoGameLibrary.dll
