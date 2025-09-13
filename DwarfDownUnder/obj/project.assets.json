@@ -371,11 +371,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\suter\\OneDrive - OST\\OST\\Semester_5\\Advanced_C#_APR400\\000_Assignment_GameProject\\MG\\DwarfDownUnder\\DwarfDownUnder.csproj",
+      "projectUniqueName": "C:\\Users\\suter\\01_MonoGame\\DwarfDownUnder\\DwarfDownUnder\\DwarfDownUnder.csproj",
       "projectName": "DwarfDownUnder",
-      "projectPath": "C:\\Users\\suter\\OneDrive - OST\\OST\\Semester_5\\Advanced_C#_APR400\\000_Assignment_GameProject\\MG\\DwarfDownUnder\\DwarfDownUnder.csproj",
+      "projectPath": "C:\\Users\\suter\\01_MonoGame\\DwarfDownUnder\\DwarfDownUnder\\DwarfDownUnder.csproj",
       "packagesPath": "C:\\Users\\suter\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\suter\\OneDrive - OST\\OST\\Semester_5\\Advanced_C#_APR400\\000_Assignment_GameProject\\MG\\DwarfDownUnder\\obj\\",
+      "outputPath": "C:\\Users\\suter\\01_MonoGame\\DwarfDownUnder\\DwarfDownUnder\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\suter\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -390,8 +390,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\suter\\OneDrive - OST\\OST\\Semester_5\\Advanced_C#_APR400\\000_Assignment_GameProject\\MG\\MonoGameLibrary\\MonoGameLibrary.csproj": {
-              "projectPath": "C:\\Users\\suter\\OneDrive - OST\\OST\\Semester_5\\Advanced_C#_APR400\\000_Assignment_GameProject\\MG\\MonoGameLibrary\\MonoGameLibrary.csproj"
+            "C:\\Users\\suter\\01_MonoGame\\DwarfDownUnder\\MonoGameLibrary\\MonoGameLibrary.csproj": {
+              "projectPath": "C:\\Users\\suter\\01_MonoGame\\DwarfDownUnder\\MonoGameLibrary\\MonoGameLibrary.csproj"
             }
           }
         }

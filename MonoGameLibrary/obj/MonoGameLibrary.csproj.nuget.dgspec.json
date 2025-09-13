@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\suter\\OneDrive - OST\\OST\\Semester_5\\Advanced_C#_APR400\\000_Assignment_GameProject\\MG\\MonoGameLibrary\\MonoGameLibrary.csproj": {}
+    "C:\\Users\\suter\\01_MonoGame\\DwarfDownUnder\\MonoGameLibrary\\MonoGameLibrary.csproj": {}
   },
   "projects": {
-    "C:\\Users\\suter\\OneDrive - OST\\OST\\Semester_5\\Advanced_C#_APR400\\000_Assignment_GameProject\\MG\\MonoGameLibrary\\MonoGameLibrary.csproj": {
+    "C:\\Users\\suter\\01_MonoGame\\DwarfDownUnder\\MonoGameLibrary\\MonoGameLibrary.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\suter\\OneDrive - OST\\OST\\Semester_5\\Advanced_C#_APR400\\000_Assignment_GameProject\\MG\\MonoGameLibrary\\MonoGameLibrary.csproj",
+        "projectUniqueName": "C:\\Users\\suter\\01_MonoGame\\DwarfDownUnder\\MonoGameLibrary\\MonoGameLibrary.csproj",
         "projectName": "MonoGameLibrary",
-        "projectPath": "C:\\Users\\suter\\OneDrive - OST\\OST\\Semester_5\\Advanced_C#_APR400\\000_Assignment_GameProject\\MG\\MonoGameLibrary\\MonoGameLibrary.csproj",
+        "projectPath": "C:\\Users\\suter\\01_MonoGame\\DwarfDownUnder\\MonoGameLibrary\\MonoGameLibrary.csproj",
         "packagesPath": "C:\\Users\\suter\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\suter\\OneDrive - OST\\OST\\Semester_5\\Advanced_C#_APR400\\000_Assignment_GameProject\\MG\\MonoGameLibrary\\obj\\",
+        "outputPath": "C:\\Users\\suter\\01_MonoGame\\DwarfDownUnder\\MonoGameLibrary\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\suter\\AppData\\Roaming\\NuGet\\NuGet.Config"

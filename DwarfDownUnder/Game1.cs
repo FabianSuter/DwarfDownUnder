@@ -7,6 +7,9 @@ namespace DwarfDownUnder;
 
 public class Game1 : Core
 {
+    // MonoGame logo (temporary)
+    private Texture2D _logo;
+
     public Game1() : base("Dwarf Down Under", 1280, 720, false)
     {
 
@@ -22,6 +25,8 @@ public class Game1 : Core
     protected override void LoadContent()
     {
         // use this.Content to load your game content here
+
+        _logo = Content.Load<Texture2D>("images/logo");
 
         base.LoadContent();
     }
@@ -40,7 +45,14 @@ public class Game1 : Core
     {
         GraphicsDevice.Clear(Color.CornflowerBlue);
 
-        // Add your drawing code here
+        // Begin the sprite batch to prepare for rendering.
+        SpriteBatch.Begin();
+
+        // Draw the logo texture
+        SpriteBatch.Draw(_logo, Vector2.Zero, Color.White);
+
+        // Always end the sprite batch when finished.
+        SpriteBatch.End();
 
         base.Draw(gameTime);
     }
