@@ -8,8 +8,8 @@ namespace DwarfDownUnder;
 
 public class Game1 : Core
 {
-    // TextureRegion of dwarf
-    private TextureRegion _dwarf;
+    // Sprite of dwarf
+    private Sprite _dwarf;
 
     public Game1() : base("Dwarf Down Under", 1280, 720, false)
     {
@@ -26,8 +26,9 @@ public class Game1 : Core
         // Load atlas texture
         TextureAtlas atlas = TextureAtlas.FromFile(Content, "images/atlas-definition.xml");
 
-        // Get dwarf region from atlas
-        _dwarf = atlas.GetRegion("dwarf");
+        // Create dwarf sprite from atlas
+        _dwarf = atlas.CreateSprite("dwarf");
+        _dwarf.Scale = new Vector2(4.0f, 4.0f);
     }
 
     protected override void Update(GameTime gameTime)
@@ -45,8 +46,8 @@ public class Game1 : Core
         // Begin the sprite batch to prepare for rendering.
         SpriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
-        // Draw dwarf texture
-        _dwarf.Draw(SpriteBatch, Vector2.Zero, Color.White, 0.0f, Vector2.One, 4.0f, SpriteEffects.None, 0.0f);
+        // Draw dwarf sprite
+        _dwarf.Draw(SpriteBatch, Vector2.One);
 
         // Always end the sprite batch when finished.
         SpriteBatch.End();
