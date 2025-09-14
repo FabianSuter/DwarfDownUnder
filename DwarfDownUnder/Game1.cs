@@ -16,10 +16,13 @@ public class Game1 : Core
     // Track position of dwarf
     private Vector2 _dwarfPosition;
 
+    // Tilemap
+    private Tilemap _tilemap;
+
     // Speed multiplier when moving
     private const float MOVE_SPEED = 5.0f;
 
-    public Game1() : base("Dwarf Down Under", 1280, 720, false)
+    public Game1() : base("Dwarf Down Under", 1280, 800, false)
     {
 
     }
@@ -36,7 +39,11 @@ public class Game1 : Core
 
         // Create dwarf sprite from atlas
         _dwarf = atlas.CreateAnimatedSprite("dwarfB-front-idle");
-        _dwarf.Scale = new Vector2(3.0f, 3.0f);
+        _dwarf.Scale = new Vector2(2.0f, 2.0f);
+
+        // Load tilemap
+        _tilemap = Tilemap.FromFile(Content, "images/tilemap-definition.xml");
+        _tilemap.Scale = new Vector2(2.0f, 2.0f);
     }
 
     protected override void Update(GameTime gameTime)
@@ -124,6 +131,9 @@ public class Game1 : Core
 
         // Begin the sprite batch to prepare for rendering.
         SpriteBatch.Begin(samplerState: SamplerState.PointClamp);
+
+        // Draw tilemap
+        _tilemap.Draw(SpriteBatch);
 
         // Draw dwarf sprite
         _dwarf.Draw(SpriteBatch, _dwarfPosition);

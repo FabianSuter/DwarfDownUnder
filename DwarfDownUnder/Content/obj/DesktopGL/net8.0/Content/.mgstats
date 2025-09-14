@@ -1,4 +1,5 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
 "C:/Users/suter/01_MonoGame/DwarfDownUnder/DwarfDownUnder/Content/images/atlas-definition.xml","C:\Users\suter\01_MonoGame\DwarfDownUnder\DwarfDownUnder\Content\bin\DesktopGL\Content\images/atlas-definition.xml","CopyItem","File",3851,3851,0.0013768
 "C:/Users/suter/01_MonoGame/DwarfDownUnder/DwarfDownUnder/Content/images/logo.png","C:/Users/suter/01_MonoGame/DwarfDownUnder/DwarfDownUnder/Content/bin/DesktopGL/Content/images/logo.xnb","TextureProcessor","Texture2DContent",16734,311381,0.133744
+"C:/Users/suter/01_MonoGame/DwarfDownUnder/DwarfDownUnder/Content/images/tilemap-definition.xml","C:\Users\suter\01_MonoGame\DwarfDownUnder\DwarfDownUnder\Content\bin\DesktopGL\Content\images/tilemap-definition.xml","CopyItem","File",3406,3406,0.0012671
 "C:/Users/suter/01_MonoGame/DwarfDownUnder/DwarfDownUnder/Content/images/TileSet-complete.png","C:/Users/suter/01_MonoGame/DwarfDownUnder/DwarfDownUnder/Content/bin/DesktopGL/Content/images/atlas.xnb","TextureProcessor","Texture2DContent",19947,811093,0.109899
