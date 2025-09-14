@@ -47,6 +47,40 @@ public class Game1 : Core
         // Check for keyboard input
         CheckKeyboardInput();
 
+        // Bounding rectangle for the screen, temporary
+        Rectangle screenBounds = new Rectangle(
+            0,
+            0,
+            GraphicsDevice.PresentationParameters.BackBufferWidth,
+            GraphicsDevice.PresentationParameters.BackBufferHeight
+        );
+
+        // Bounding circle for the dwarf
+        Circle dwarfBounds = new Circle(
+            (int)(_dwarfPosition.X + (_dwarf.Width * 0.5f)),
+            (int)(_dwarfPosition.Y + (_dwarf.Height * 0.5f)),
+            (int)(_dwarf.Width * 0.5f)
+        );
+
+        // Check if dwarf is out of screen bounds, and if so, move it back
+        if (dwarfBounds.Left < screenBounds.Left)
+        {
+            _dwarfPosition.X = screenBounds.Left;
+        }
+        else if (dwarfBounds.Right > screenBounds.Right)
+        {
+            _dwarfPosition.X = screenBounds.Right - _dwarf.Width;
+        }
+
+        if (dwarfBounds.Top < screenBounds.Top)
+        {
+            _dwarfPosition.Y = screenBounds.Top;
+        }
+        else if (dwarfBounds.Bottom > screenBounds.Bottom)
+        {
+            _dwarfPosition.Y = screenBounds.Bottom - _dwarf.Height;
+        }
+
         base.Update(gameTime);
     }
 
