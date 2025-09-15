@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "GJiDcNJ8vrE=",
+  "dgSpecHash": "OE09zH8Ibq8=",
   "success": true,
-  "projectFilePath": "C:\\Users\\suter\\01_MonoGame\\DwarfDownUnder\\DwarfDownUnder\\DwarfDownUnder.csproj",
+  "projectFilePath": "c:\\Users\\suter\\01_MonoGame\\DwarfDownUnder\\DwarfDownUnder\\DwarfDownUnder.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\suter\\.nuget\\packages\\monogame.content.builder.task\\3.8.4\\monogame.content.builder.task.3.8.4.nupkg.sha512",
     "C:\\Users\\suter\\.nuget\\packages\\monogame.framework.desktopgl\\3.8.4\\monogame.framework.desktopgl.3.8.4.nupkg.sha512",

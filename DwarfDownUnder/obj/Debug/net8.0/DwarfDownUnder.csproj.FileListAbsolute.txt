@@ -70,3 +70,7 @@ C:\Users\suter\01_MonoGame\DwarfDownUnder\DwarfDownUnder\bin\Debug\net8.0\Conten
 C:\Users\suter\01_MonoGame\DwarfDownUnder\DwarfDownUnder\bin\Debug\net8.0\Content\images\atlas.xnb
 C:\Users\suter\01_MonoGame\DwarfDownUnder\DwarfDownUnder\bin\Debug\net8.0\Content\images\atlas-definition.xml
 C:\Users\suter\01_MonoGame\DwarfDownUnder\DwarfDownUnder\bin\Debug\net8.0\Content\images\tilemap-definition.xml
+C:\Users\suter\01_MonoGame\DwarfDownUnder\DwarfDownUnder\bin\Debug\net8.0\Content\audio\bounce.xnb
+C:\Users\suter\01_MonoGame\DwarfDownUnder\DwarfDownUnder\bin\Debug\net8.0\Content\audio\collect.xnb
+C:\Users\suter\01_MonoGame\DwarfDownUnder\DwarfDownUnder\bin\Debug\net8.0\Content\audio\theme.ogg
+C:\Users\suter\01_MonoGame\DwarfDownUnder\DwarfDownUnder\bin\Debug\net8.0\Content\audio\theme.xnb

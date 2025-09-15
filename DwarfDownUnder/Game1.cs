@@ -19,6 +19,9 @@ public class Game1 : Core
     // Tilemap
     private Tilemap _tilemap;
 
+    // Define bounds of playing room
+    private Rectangle _roomBounds;
+
     // Speed multiplier when moving
     private const float MOVE_SPEED = 5.0f;
 
@@ -30,6 +33,20 @@ public class Game1 : Core
     protected override void Initialize()
     {
         base.Initialize();
+
+        Rectangle screenBounds = GraphicsDevice.PresentationParameters.Bounds;
+
+        _roomBounds = new Rectangle(
+            (int)_tilemap.TileWidth,
+            (int)_tilemap.TileHeight,
+            screenBounds.Width - (int)(_tilemap.TileWidth * 2),
+            screenBounds.Height - (int)(_tilemap.TileHeight * 2)
+        );
+
+        // Set initial position of dwarf to center of screen
+        int centerRow = _tilemap.Rows / 2;
+        int centerCol = _tilemap.Columns / 2;
+        _dwarfPosition = new Vector2(centerCol * _tilemap.TileWidth, centerRow * _tilemap.TileHeight);
     }
 
     protected override void LoadContent()
@@ -54,14 +71,6 @@ public class Game1 : Core
         // Check for keyboard input
         CheckKeyboardInput();
 
-        // Bounding rectangle for the screen, temporary
-        Rectangle screenBounds = new Rectangle(
-            0,
-            0,
-            GraphicsDevice.PresentationParameters.BackBufferWidth,
-            GraphicsDevice.PresentationParameters.BackBufferHeight
-        );
-
         // Bounding circle for the dwarf
         Circle dwarfBounds = new Circle(
             (int)(_dwarfPosition.X + (_dwarf.Width * 0.5f)),
@@ -69,23 +78,23 @@ public class Game1 : Core
             (int)(_dwarf.Width * 0.5f)
         );
 
-        // Check if dwarf is out of screen bounds, and if so, move it back
-        if (dwarfBounds.Left < screenBounds.Left)
+        // Check if dwarf is out of room bounds, and if so, move it back
+        if (dwarfBounds.Left < _roomBounds.Left)
         {
-            _dwarfPosition.X = screenBounds.Left;
+            _dwarfPosition.X = _roomBounds.Left;
         }
-        else if (dwarfBounds.Right > screenBounds.Right)
+        else if (dwarfBounds.Right > _roomBounds.Right)
         {
-            _dwarfPosition.X = screenBounds.Right - _dwarf.Width;
+            _dwarfPosition.X = _roomBounds.Right - _dwarf.Width;
         }
 
-        if (dwarfBounds.Top < screenBounds.Top)
+        if (dwarfBounds.Top < _roomBounds.Top)
         {
-            _dwarfPosition.Y = screenBounds.Top;
+            _dwarfPosition.Y = _roomBounds.Top;
         }
-        else if (dwarfBounds.Bottom > screenBounds.Bottom)
+        else if (dwarfBounds.Bottom > _roomBounds.Bottom)
         {
-            _dwarfPosition.Y = screenBounds.Bottom - _dwarf.Height;
+            _dwarfPosition.Y = _roomBounds.Bottom - _dwarf.Height;
         }
 
         base.Update(gameTime);
