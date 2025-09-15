@@ -1,7 +1,9 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 using MonoGameLibrary;
 using MonoGameLibrary.Graphics;
 using MonoGameLibrary.Input;
@@ -10,6 +12,9 @@ namespace DwarfDownUnder;
 
 public class Game1 : Core
 {
+    // Speed multiplier when moving
+    private const float MOVE_SPEED = 5.0f;
+
     // Sprite of dwarf
     private AnimatedSprite _dwarf;
 
@@ -22,8 +27,11 @@ public class Game1 : Core
     // Define bounds of playing room
     private Rectangle _roomBounds;
 
-    // Speed multiplier when moving
-    private const float MOVE_SPEED = 5.0f;
+    // SFX for collecting something
+    private SoundEffect _collectSFX;
+
+    // Background music
+    private Song _themeSong;
 
     public Game1() : base("Dwarf Down Under", 1280, 800, false)
     {
@@ -47,6 +55,9 @@ public class Game1 : Core
         int centerRow = _tilemap.Rows / 2;
         int centerCol = _tilemap.Columns / 2;
         _dwarfPosition = new Vector2(centerCol * _tilemap.TileWidth, centerRow * _tilemap.TileHeight);
+
+        // Start playing background theme
+        Audio.PlaySong(_themeSong);
     }
 
     protected override void LoadContent()
@@ -61,6 +72,12 @@ public class Game1 : Core
         // Load tilemap
         _tilemap = Tilemap.FromFile(Content, "images/tilemap-definition.xml");
         _tilemap.Scale = new Vector2(2.0f, 2.0f);
+
+        // Load the collect sound effect.
+        _collectSFX = Content.Load<SoundEffect>("audio/collect");
+
+        // Load the background theme music.
+        _themeSong = Content.Load<Song>("audio/theme");
     }
 
     protected override void Update(GameTime gameTime)
