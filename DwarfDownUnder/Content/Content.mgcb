@@ -31,6 +31,9 @@
 /processorParam:Quality=Best
 /build:audio/theme.ogg
 
+#begin fonts/norseRegular.fnt
+/copy:fonts/norseRegular.fnt
+
 #begin fonts/norseRegular.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor

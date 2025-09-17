@@ -12,6 +12,7 @@ None yet
 - Sound Effects as a free bundle from [Kronbits](https://kronbits.itch.io/retrosfx)
 - Background theme from [Luis Zuno](https://soundcloud.com/ansimuz/tracks), currently *Exploration*
 - Sprite font from [Joël Carrouché](https://www.1001fonts.com/users/joelcarrouche/), currently *Norse Regular*
+- Fonts in UI converted from *.ttf* to *.fnt* and *.png* with [Hiero](https://docs.flatredball.com/gum/gum-tool/gum-elements/text/use-custom-font#creating-fonts-with-hiero)
 
 # Lizenz-Info
 
