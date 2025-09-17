@@ -74,3 +74,4 @@ C:\Users\suter\01_MonoGame\DwarfDownUnder\DwarfDownUnder\bin\Debug\net8.0\Conten
 C:\Users\suter\01_MonoGame\DwarfDownUnder\DwarfDownUnder\bin\Debug\net8.0\Content\audio\collect.xnb
 C:\Users\suter\01_MonoGame\DwarfDownUnder\DwarfDownUnder\bin\Debug\net8.0\Content\audio\theme.ogg
 C:\Users\suter\01_MonoGame\DwarfDownUnder\DwarfDownUnder\bin\Debug\net8.0\Content\audio\theme.xnb
+c:\Users\suter\01_MonoGame\DwarfDownUnder\DwarfDownUnder\bin\Debug\net8.0\Content\fonts\norseRegular.xnb

@@ -33,6 +33,18 @@ public class Game1 : Core
     // Background music
     private Song _themeSong;
 
+    // SpriteFont for displaying text
+    private SpriteFont _font;
+
+    // Tracks player score
+    private int _score = 0;
+
+    // Position to draw score text
+    private Vector2 _scoreTextPosition;
+
+    // Origin of score text
+    private Vector2 _scoreTextOrigin;
+
     public Game1() : base("Dwarf Down Under", 1280, 800, false)
     {
 
@@ -46,9 +58,9 @@ public class Game1 : Core
 
         _roomBounds = new Rectangle(
             (int)_tilemap.TileWidth,
-            (int)_tilemap.TileHeight,
+            (int)_tilemap.TileHeight * 2,
             screenBounds.Width - (int)(_tilemap.TileWidth * 2),
-            screenBounds.Height - (int)(_tilemap.TileHeight * 2)
+            screenBounds.Height - (int)(_tilemap.TileHeight * 3)
         );
 
         // Set initial position of dwarf to center of screen
@@ -58,6 +70,13 @@ public class Game1 : Core
 
         // Start playing background theme
         Audio.PlaySong(_themeSong);
+
+        // Set score text aligned to left edge of room bounds and vertically centered on first tile
+        _scoreTextPosition = new Vector2(_roomBounds.Left, _tilemap.TileHeight * 0.5f);
+
+        // Set origin of score text left centered
+        float scoreTextYOrigin = _font.MeasureString("Score").Y * 0.5f;
+        _scoreTextOrigin = new Vector2(0, scoreTextYOrigin);
     }
 
     protected override void LoadContent()
@@ -78,6 +97,9 @@ public class Game1 : Core
 
         // Load the background theme music.
         _themeSong = Content.Load<Song>("audio/theme");
+
+        // Load font
+        _font = Content.Load<SpriteFont>("fonts/norseRegular");
     }
 
     protected override void Update(GameTime gameTime)
@@ -126,25 +148,25 @@ public class Game1 : Core
             speed *= 1.5f;
         }
 
-        // If the W or Up keys are down, move the slime up on the screen.
+        // If the W or Up keys are down, move the dwarf up on the screen.
         if (Input.Keyboard.IsKeyDown(Keys.W) || Input.Keyboard.IsKeyDown(Keys.Up))
         {
             _dwarfPosition.Y -= speed;
         }
 
-        // if the S or Down keys are down, move the slime down on the screen.
+        // if the S or Down keys are down, move the dwarf down on the screen.
         if (Input.Keyboard.IsKeyDown(Keys.S) || Input.Keyboard.IsKeyDown(Keys.Down))
         {
             _dwarfPosition.Y += speed;
         }
 
-        // If the A or Left keys are down, move the slime left on the screen.
+        // If the A or Left keys are down, move the dwarf left on the screen.
         if (Input.Keyboard.IsKeyDown(Keys.A) || Input.Keyboard.IsKeyDown(Keys.Left))
         {
             _dwarfPosition.X -= speed;
         }
 
-        // If the D or Right keys are down, move the slime right on the screen.
+        // If the D or Right keys are down, move the dwarf right on the screen.
         if (Input.Keyboard.IsKeyDown(Keys.D) || Input.Keyboard.IsKeyDown(Keys.Right))
         {
             _dwarfPosition.X += speed;
@@ -163,6 +185,19 @@ public class Game1 : Core
 
         // Draw dwarf sprite
         _dwarf.Draw(SpriteBatch, _dwarfPosition);
+
+        // Draw score
+        SpriteBatch.DrawString(
+            _font,              // font
+            $"Score: {_score}", // text
+            _scoreTextPosition, // position
+            Color.White,        // color
+            0.0f,               // rotation
+            _scoreTextOrigin,   // origin
+            1.0f,               // scale
+            SpriteEffects.None, // effects
+            0.0f                // layer depth
+        );
 
         // Always end the sprite batch when finished.
         SpriteBatch.End();

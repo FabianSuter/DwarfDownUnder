@@ -92,7 +92,7 @@ public class AudioController : IDisposable
         _activeSoundEffectInstances = new List<SoundEffectInstance>();
     }
 
-    // Finalizer called when object is collected by the garbage collector.
+    // Finalizer called when object is collected by the garbage collector. Fallback in case Dispose is not called.
     ~AudioController() => Dispose(false);
 
     /// <summary>
