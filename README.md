@@ -9,7 +9,7 @@ None yet
 # Sources
 
 - Tileset as an asset pack from https://lyime.itch.io/
-- Sound FX as a free bundle from [Kronbits](https://kronbits.itch.io/retrosfx)
+- Sound Effects as a free bundle from [Kronbits](https://kronbits.itch.io/retrosfx)
 - Background theme from [Luis Zuno](https://soundcloud.com/ansimuz/tracks), currently *Exploration*
 - Sprite font from [Joël Carrouché](https://www.1001fonts.com/users/joelcarrouche/), currently *Norse Regular*
 
