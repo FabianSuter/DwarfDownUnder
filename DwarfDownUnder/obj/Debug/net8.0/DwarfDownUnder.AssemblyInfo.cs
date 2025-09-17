@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DwarfDownUnder")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+03fbec3d9a4d360c45c207268bbe9cebfdde92e8")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+988e2ab8e61e812e0b3e1b59eacb1e5f82a6cd84")]
 [assembly: System.Reflection.AssemblyProductAttribute("DwarfDownUnder")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DwarfDownUnder")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
