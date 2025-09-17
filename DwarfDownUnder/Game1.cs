@@ -21,6 +21,12 @@ public class Game1 : Core
     // Track position of dwarf
     private Vector2 _dwarfPosition;
 
+    // Sprite of coin
+    private Sprite _coin;
+
+    // Track position of coin
+    private Vector2 _coinPosition;
+
     // Tilemap
     private Tilemap _tilemap;
 
@@ -68,6 +74,9 @@ public class Game1 : Core
         int centerCol = _tilemap.Columns / 2;
         _dwarfPosition = new Vector2(centerCol * _tilemap.TileWidth, centerRow * _tilemap.TileHeight);
 
+        // Initial coin position in top left corner
+        _coinPosition = new Vector2(_roomBounds.Left, _roomBounds.Top);
+
         // Start playing background theme
         Audio.PlaySong(_themeSong);
 
@@ -87,6 +96,10 @@ public class Game1 : Core
         // Create dwarf sprite from atlas
         _dwarf = atlas.CreateAnimatedSprite("dwarfB-front-idle");
         _dwarf.Scale = new Vector2(2.0f, 2.0f);
+
+        // Create coin sprite from atlas
+        _coin = atlas.CreateSprite("coin");
+        _coin.Scale = new Vector2(2.0f, 2.0f);
 
         // Load tilemap
         _tilemap = Tilemap.FromFile(Content, "images/tilemap-definition.xml");
@@ -117,6 +130,13 @@ public class Game1 : Core
             (int)(_dwarf.Width * 0.5f)
         );
 
+        // Bounding circle for the coin
+        Circle coinBounds = new Circle(
+            (int)(_coinPosition.X + (_coin.Width * 0.5f)),
+            (int)(_coinPosition.Y + (_coin.Height * 0.5f)),
+            (int)(_coin.Width * 0.5f)
+        );
+
         // Check if dwarf is out of room bounds, and if so, move it back
         if (dwarfBounds.Left < _roomBounds.Left)
         {
@@ -134,6 +154,23 @@ public class Game1 : Core
         else if (dwarfBounds.Bottom > _roomBounds.Bottom)
         {
             _dwarfPosition.Y = _roomBounds.Bottom - _dwarf.Height;
+        }
+
+        // Check if dwarf collides with coin
+        if (dwarfBounds.Intersects(coinBounds))
+        {
+            // Choose random row and column
+            int column = Random.Shared.Next(1, _tilemap.Columns - 1);
+            int row = Random.Shared.Next(2, _tilemap.Rows - 1);
+
+            // Move coin to new position
+            _coinPosition = new Vector2(column * _coin.Width, row * _coin.Height);
+
+            // Play collect sfx
+            Audio.PlaySoundEffect(_collectSFX);
+
+            // Increase score
+            _score += 100;
         }
 
         base.Update(gameTime);
@@ -185,6 +222,9 @@ public class Game1 : Core
 
         // Draw dwarf sprite
         _dwarf.Draw(SpriteBatch, _dwarfPosition);
+
+        // Draw coin sprite
+        _coin.Draw(SpriteBatch, _coinPosition);
 
         // Draw score
         SpriteBatch.DrawString(

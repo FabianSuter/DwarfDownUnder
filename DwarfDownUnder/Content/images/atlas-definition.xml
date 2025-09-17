@@ -2,6 +2,7 @@
 <TextureAtlas>
     <Texture>images/atlas</Texture>
     <Regions>
+        <Region name="coin" x="288" y="16" width="16" height="16" />
         <Region name="dwarfB-0" x="16" y="208" width="16" height="16" />
         <Region name="dwarfB-1" x="64" y="208" width="16" height="16" />
         <Region name="dwarfB-2" x="112" y="208" width="16" height="16" />
