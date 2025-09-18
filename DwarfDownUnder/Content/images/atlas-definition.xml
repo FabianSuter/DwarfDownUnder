@@ -3,6 +3,7 @@
     <Texture>images/atlas</Texture>
     <Regions>
         <Region name="coin" x="800" y="16" width="16" height="16" />
+        <Region name="pickaxe-background" x="816" y="160" width="24" height="24" />½
         <Region name="dwarfB-0" x="528" y="208" width="16" height="16" />
         <Region name="dwarfB-1" x="576" y="208" width="16" height="16" />
         <Region name="dwarfB-2" x="624" y="208" width="16" height="16" />

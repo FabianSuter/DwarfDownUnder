@@ -10,6 +10,7 @@
     <File>c:/Users/suter/01_MonoGame/DwarfDownUnder/DwarfDownUnder/Content/fonts/norseRegular_5x.spritefont</File>
     <File>c:/Users/suter/01_MonoGame/DwarfDownUnder/DwarfDownUnder/Content/fonts/norseRegular.spritefont</File>
     <File>c:/Users/suter/01_MonoGame/DwarfDownUnder/DwarfDownUnder/Content/images/logo.png</File>
+    <File>c:/Users/suter/01_MonoGame/DwarfDownUnder/DwarfDownUnder/Content/images/Pickaxe45_24px.png</File>
     <File>c:/Users/suter/01_MonoGame/DwarfDownUnder/DwarfDownUnder/Content/images/TileSet-complete.png</File>
   </SourceFiles>
   <DestFiles>
@@ -19,6 +20,7 @@
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
+    <File>images/background-pattern.png</File>
     <File>images/atlas.png</File>
   </DestFiles>
 </SourceFileCollection>
