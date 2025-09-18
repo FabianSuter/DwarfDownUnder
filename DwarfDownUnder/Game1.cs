@@ -1,55 +1,13 @@
-﻿using System;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
+﻿using DwarfDownUnder.Scenes;
 using Microsoft.Xna.Framework.Media;
 using MonoGameLibrary;
-using MonoGameLibrary.Graphics;
-using MonoGameLibrary.Input;
 
 namespace DwarfDownUnder;
 
 public class Game1 : Core
 {
-    // Speed multiplier when moving
-    private const float MOVE_SPEED = 5.0f;
-
-    // Sprite of dwarf
-    private AnimatedSprite _dwarf;
-
-    // Track position of dwarf
-    private Vector2 _dwarfPosition;
-
-    // Sprite of coin
-    private Sprite _coin;
-
-    // Track position of coin
-    private Vector2 _coinPosition;
-
-    // Tilemap
-    private Tilemap _tilemap;
-
-    // Define bounds of playing room
-    private Rectangle _roomBounds;
-
-    // SFX for collecting something
-    private SoundEffect _collectSFX;
-
     // Background music
     private Song _themeSong;
-
-    // SpriteFont for displaying text
-    private SpriteFont _font;
-
-    // Tracks player score
-    private int _score = 0;
-
-    // Position to draw score text
-    private Vector2 _scoreTextPosition;
-
-    // Origin of score text
-    private Vector2 _scoreTextOrigin;
 
     public Game1() : base("Dwarf Down Under", 1280, 800, false)
     {
@@ -60,188 +18,16 @@ public class Game1 : Core
     {
         base.Initialize();
 
-        Rectangle screenBounds = GraphicsDevice.PresentationParameters.Bounds;
-
-        _roomBounds = new Rectangle(
-            (int)_tilemap.TileWidth,
-            (int)_tilemap.TileHeight * 2,
-            screenBounds.Width - (int)(_tilemap.TileWidth * 2),
-            screenBounds.Height - (int)(_tilemap.TileHeight * 3)
-        );
-
-        // Set initial position of dwarf to center of screen
-        int centerRow = _tilemap.Rows / 2;
-        int centerCol = _tilemap.Columns / 2;
-        _dwarfPosition = new Vector2(centerCol * _tilemap.TileWidth, centerRow * _tilemap.TileHeight);
-
-        // Initial coin position in top left corner
-        _coinPosition = new Vector2(_roomBounds.Left, _roomBounds.Top);
-
         // Start playing background theme
         Audio.PlaySong(_themeSong);
 
-        // Set score text aligned to left edge of room bounds and vertically centered on first tile
-        _scoreTextPosition = new Vector2(_roomBounds.Left, _tilemap.TileHeight * 0.5f);
-
-        // Set origin of score text left centered
-        float scoreTextYOrigin = _font.MeasureString("Score").Y * 0.5f;
-        _scoreTextOrigin = new Vector2(0, scoreTextYOrigin);
+        // Start the game with the title scene
+        ChangeScene(new TitleScene());
     }
 
     protected override void LoadContent()
     {
-        // Load atlas texture
-        TextureAtlas atlas = TextureAtlas.FromFile(Content, "images/atlas-definition.xml");
-
-        // Create dwarf sprite from atlas
-        _dwarf = atlas.CreateAnimatedSprite("dwarfB-front-idle");
-        _dwarf.Scale = new Vector2(2.0f, 2.0f);
-
-        // Create coin sprite from atlas
-        _coin = atlas.CreateSprite("coin");
-        _coin.Scale = new Vector2(2.0f, 2.0f);
-
-        // Load tilemap
-        _tilemap = Tilemap.FromFile(Content, "images/tilemap-definition.xml");
-        _tilemap.Scale = new Vector2(2.0f, 2.0f);
-
-        // Load the collect sound effect.
-        _collectSFX = Content.Load<SoundEffect>("audio/collect");
-
         // Load the background theme music.
         _themeSong = Content.Load<Song>("audio/theme");
-
-        // Load font
-        _font = Content.Load<SpriteFont>("fonts/norseRegular");
-    }
-
-    protected override void Update(GameTime gameTime)
-    {
-        // Update dwarf sprite
-        _dwarf.Update(gameTime);
-
-        // Check for keyboard input
-        CheckKeyboardInput();
-
-        // Bounding circle for the dwarf
-        Circle dwarfBounds = new Circle(
-            (int)(_dwarfPosition.X + (_dwarf.Width * 0.5f)),
-            (int)(_dwarfPosition.Y + (_dwarf.Height * 0.5f)),
-            (int)(_dwarf.Width * 0.5f)
-        );
-
-        // Bounding circle for the coin
-        Circle coinBounds = new Circle(
-            (int)(_coinPosition.X + (_coin.Width * 0.5f)),
-            (int)(_coinPosition.Y + (_coin.Height * 0.5f)),
-            (int)(_coin.Width * 0.5f)
-        );
-
-        // Check if dwarf is out of room bounds, and if so, move it back
-        if (dwarfBounds.Left < _roomBounds.Left)
-        {
-            _dwarfPosition.X = _roomBounds.Left;
-        }
-        else if (dwarfBounds.Right > _roomBounds.Right)
-        {
-            _dwarfPosition.X = _roomBounds.Right - _dwarf.Width;
-        }
-
-        if (dwarfBounds.Top < _roomBounds.Top)
-        {
-            _dwarfPosition.Y = _roomBounds.Top;
-        }
-        else if (dwarfBounds.Bottom > _roomBounds.Bottom)
-        {
-            _dwarfPosition.Y = _roomBounds.Bottom - _dwarf.Height;
-        }
-
-        // Check if dwarf collides with coin
-        if (dwarfBounds.Intersects(coinBounds))
-        {
-            // Choose random row and column
-            int column = Random.Shared.Next(1, _tilemap.Columns - 1);
-            int row = Random.Shared.Next(2, _tilemap.Rows - 1);
-
-            // Move coin to new position
-            _coinPosition = new Vector2(column * _coin.Width, row * _coin.Height);
-
-            // Play collect sfx
-            Audio.PlaySoundEffect(_collectSFX);
-
-            // Increase score
-            _score += 100;
-        }
-
-        base.Update(gameTime);
-    }
-
-    private void CheckKeyboardInput()
-    {
-        // If the space key is held down, the movement speed increases by 1.5
-        float speed = MOVE_SPEED;
-        if (Input.Keyboard.IsKeyDown(Keys.Space))
-        {
-            speed *= 1.5f;
-        }
-
-        // If the W or Up keys are down, move the dwarf up on the screen.
-        if (Input.Keyboard.IsKeyDown(Keys.W) || Input.Keyboard.IsKeyDown(Keys.Up))
-        {
-            _dwarfPosition.Y -= speed;
-        }
-
-        // if the S or Down keys are down, move the dwarf down on the screen.
-        if (Input.Keyboard.IsKeyDown(Keys.S) || Input.Keyboard.IsKeyDown(Keys.Down))
-        {
-            _dwarfPosition.Y += speed;
-        }
-
-        // If the A or Left keys are down, move the dwarf left on the screen.
-        if (Input.Keyboard.IsKeyDown(Keys.A) || Input.Keyboard.IsKeyDown(Keys.Left))
-        {
-            _dwarfPosition.X -= speed;
-        }
-
-        // If the D or Right keys are down, move the dwarf right on the screen.
-        if (Input.Keyboard.IsKeyDown(Keys.D) || Input.Keyboard.IsKeyDown(Keys.Right))
-        {
-            _dwarfPosition.X += speed;
-        }
-    }
-
-    protected override void Draw(GameTime gameTime)
-    {
-        GraphicsDevice.Clear(Color.CornflowerBlue);
-
-        // Begin the sprite batch to prepare for rendering.
-        SpriteBatch.Begin(samplerState: SamplerState.PointClamp);
-
-        // Draw tilemap
-        _tilemap.Draw(SpriteBatch);
-
-        // Draw dwarf sprite
-        _dwarf.Draw(SpriteBatch, _dwarfPosition);
-
-        // Draw coin sprite
-        _coin.Draw(SpriteBatch, _coinPosition);
-
-        // Draw score
-        SpriteBatch.DrawString(
-            _font,              // font
-            $"Score: {_score}", // text
-            _scoreTextPosition, // position
-            Color.White,        // color
-            0.0f,               // rotation
-            _scoreTextOrigin,   // origin
-            1.0f,               // scale
-            SpriteEffects.None, // effects
-            0.0f                // layer depth
-        );
-
-        // Always end the sprite batch when finished.
-        SpriteBatch.End();
-
-        base.Draw(gameTime);
     }
 }

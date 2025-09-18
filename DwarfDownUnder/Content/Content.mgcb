@@ -31,6 +31,13 @@
 /processorParam:Quality=Best
 /build:audio/theme.ogg
 
+#begin fonts/norseRegular_5x.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:fonts/norseRegular_5x.spritefont
+
 #begin fonts/norseRegular.fnt
 /copy:fonts/norseRegular.fnt
 

@@ -7,11 +7,13 @@
     <File>c:/Users/suter/01_MonoGame/DwarfDownUnder/DwarfDownUnder/Content/audio/bounce.wav</File>
     <File>c:/Users/suter/01_MonoGame/DwarfDownUnder/DwarfDownUnder/Content/audio/collect.wav</File>
     <File>c:/Users/suter/01_MonoGame/DwarfDownUnder/DwarfDownUnder/Content/audio/theme.ogg</File>
+    <File>c:/Users/suter/01_MonoGame/DwarfDownUnder/DwarfDownUnder/Content/fonts/norseRegular_5x.spritefont</File>
     <File>c:/Users/suter/01_MonoGame/DwarfDownUnder/DwarfDownUnder/Content/fonts/norseRegular.spritefont</File>
     <File>c:/Users/suter/01_MonoGame/DwarfDownUnder/DwarfDownUnder/Content/images/logo.png</File>
     <File>c:/Users/suter/01_MonoGame/DwarfDownUnder/DwarfDownUnder/Content/images/TileSet-complete.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
