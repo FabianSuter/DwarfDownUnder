@@ -133,4 +133,5 @@ public readonly struct Circle : IEquatable<Circle>
     /// <param name="rhs">The circle on the right hand side fo the inequality operator.</param>
     /// <returns>true if the two circle are not equal; otherwise, false.</returns>
     public static bool operator !=(Circle lhs, Circle rhs) => !lhs.Equals(rhs);
+
 }

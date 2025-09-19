@@ -1,4 +1,5 @@
 using System;
+using DwarfDownUnder.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
@@ -7,58 +8,61 @@ using MonoGameGum;
 using Gum.Forms.Controls;
 using MonoGameGum.GueDeriving;
 using MonoGameLibrary;
+using MonoGameLibrary.Graphics;
 using MonoGameLibrary.Scenes;
 
 namespace DwarfDownUnder.Scenes;
 
 public class TitleScene : Scene
 {
-    private const string DWARF_TEXT = "Dwarf";
+    private const string DUNGEON_TEXT = "Dwarf";
     private const string DOWN_UNDER_TEXT = "Down Under";
-    private const string PRESS_ENTER_TEXT = "Press Enter To Start";
-
-    private SoundEffect _uiSoundEffect;
-    private Panel _titleScreenButtonsPanel;
-    private Panel _optionsPanel;
-    private Button _optionsButton;
-    private Button _optionsBackButton;
-
-
-    // The font to use to render normal text.
-    private SpriteFont _font;
+    // private const string PRESS_ENTER_TEXT = "Press Enter To Start";
 
     // The font used to render the title text.
     private SpriteFont _font5x;
 
-    // The position to draw the dwarf text at.
-    private Vector2 _dwarfTextPos;
+    // The position to draw the dungeon text at.
+    private Vector2 _dungeonTextPos;
 
-    // The origin to set for the dwarf text.
-    private Vector2 _dwarfTextOrigin;
+    // The origin to set for the dungeon text.
+    private Vector2 _dungeonTextOrigin;
 
-    // The position to draw the downUnder text at.
+    // The position to draw the down under text at.
     private Vector2 _downUnderTextPos;
 
-    // The origin to set for the downUnder text.
+    // The origin to set for the down under text.
     private Vector2 _downUnderTextOrigin;
 
-    // The position to draw the press enter text at.
-    private Vector2 _pressEnterPos;
-
-    // The origin to set for the press enter text when drawing it.
-    private Vector2 _pressEnterOrigin;
-
-    // Texture for the background pattern
+    // Texture for background pattern
     private Texture2D _backgroundPattern;
 
-    // Destination rectangle for the pattern to fill
+    // Destination rectangle for background pattern to fill
     private Rectangle _backgroundDestination;
 
-    // Offsetfor background pattern, to simulate scrolling
+    // Offset for background pattern to mimic scrolling
     private Vector2 _backgroundOffset;
 
-    // Scrolling speed of the background pattern
-    private float _scrollSpeed = 30.0f;
+    // Speed to scroll the background pattern
+    private float _scrollSpeed = 25.0f;
+    
+    // Define sfx for UI
+    private SoundEffect _uiSoundEffect;
+
+    // Define panels & buttons for title
+    private Panel _titleScreenButtonsPanel;
+
+    // Define panel for options
+    private Panel _optionsPanel;
+
+    // Define button for options
+    private AnimatedButton _optionsButton;
+
+    // Define backbutton for options
+    private AnimatedButton _optionsBackButton;
+
+    // Reference to texture atlas for UI
+    private TextureAtlas _atlas;
 
     private void CreateTitlePanel()
     {
@@ -67,7 +71,7 @@ public class TitleScene : Scene
         _titleScreenButtonsPanel.Dock(Gum.Wireframe.Dock.Fill);
         _titleScreenButtonsPanel.AddToRoot();
 
-        var startButton = new Button();
+        AnimatedButton startButton = new AnimatedButton(_atlas);
         startButton.Anchor(Gum.Wireframe.Anchor.BottomLeft);
         startButton.Visual.X = 50;
         startButton.Visual.Y = -12;
@@ -76,7 +80,7 @@ public class TitleScene : Scene
         startButton.Click += HandleStartClicked;
         _titleScreenButtonsPanel.AddChild(startButton);
 
-        _optionsButton = new Button();
+        _optionsButton = new AnimatedButton(_atlas);
         _optionsButton.Anchor(Gum.Wireframe.Anchor.BottomRight);
         _optionsButton.Visual.X = -50;
         _optionsButton.Visual.Y = -12;
@@ -119,13 +123,18 @@ public class TitleScene : Scene
         _optionsPanel.IsVisible = false;
         _optionsPanel.AddToRoot();
 
-        var optionsText = new TextRuntime();
+        TextRuntime optionsText = new TextRuntime();
         optionsText.X = 10;
         optionsText.Y = 10;
         optionsText.Text = "OPTIONS";
+        optionsText.UseCustomFont = true;
+        optionsText.FontScale = 0.5f;
+        optionsText.CustomFontFile = @"fonts/04b_30.fnt";
         _optionsPanel.AddChild(optionsText);
 
-        var musicSlider = new Slider();
+        OptionsSlider musicSlider = new OptionsSlider(_atlas);
+        musicSlider.Name = "MusicSlider";
+        musicSlider.Text = "MUSIC";
         musicSlider.Anchor(Gum.Wireframe.Anchor.Top);
         musicSlider.Visual.Y = 30f;
         musicSlider.Minimum = 0;
@@ -137,7 +146,9 @@ public class TitleScene : Scene
         musicSlider.ValueChangeCompleted += HandleMusicSliderValueChangeCompleted;
         _optionsPanel.AddChild(musicSlider);
 
-        var sfxSlider = new Slider();
+        OptionsSlider sfxSlider = new OptionsSlider(_atlas);
+        sfxSlider.Name = "SfxSlider";
+        sfxSlider.Text = "SFX";
         sfxSlider.Anchor(Gum.Wireframe.Anchor.Top);
         sfxSlider.Visual.Y = 93;
         sfxSlider.Minimum = 0;
@@ -149,7 +160,7 @@ public class TitleScene : Scene
         sfxSlider.ValueChangeCompleted += HandleSfxSliderChangeCompleted;
         _optionsPanel.AddChild(sfxSlider);
 
-        _optionsBackButton = new Button();
+        _optionsBackButton = new AnimatedButton(_atlas);
         _optionsBackButton.Text = "BACK";
         _optionsBackButton.Anchor(Gum.Wireframe.Anchor.BottomRight);
         _optionsBackButton.X = -28f;
@@ -231,25 +242,20 @@ public class TitleScene : Scene
         // can close the game by pressing the escape key.
         Core.ExitOnEscape = true;
 
-        // Set the position and origin for the Dwarf text.
-        Vector2 size = _font5x.MeasureString(DWARF_TEXT);
-        _dwarfTextPos = new Vector2(640, 100);
-        _dwarfTextOrigin = size * 0.5f;
+        // Set the position and origin for the Dungeon text.
+        Vector2 size = _font5x.MeasureString(DUNGEON_TEXT);
+        _dungeonTextPos = new Vector2(640, 100);
+        _dungeonTextOrigin = size * 0.5f;
 
-        // Set the position and origin for the downUnder text.
+        // Set the position and origin for the down under text.
         size = _font5x.MeasureString(DOWN_UNDER_TEXT);
-        _downUnderTextPos = new Vector2(640, 240);
+        _downUnderTextPos = new Vector2(640, 207);
         _downUnderTextOrigin = size * 0.5f;
 
-        // Set the position and origin for the press enter text.
-        size = _font.MeasureString(PRESS_ENTER_TEXT);
-        _pressEnterPos = new Vector2(640, 620);
-        _pressEnterOrigin = size * 0.5f;
-
-        // Initialize offset at zero
+        // Initialize offset of background pattern to zero
         _backgroundOffset = Vector2.Zero;
 
-        // Pattern fills the entire screen
+        // Set background dest rectangle to fill entire screen
         _backgroundDestination = Core.GraphicsDevice.PresentationParameters.Bounds;
 
         InitializeUI();
@@ -257,34 +263,29 @@ public class TitleScene : Scene
 
     public override void LoadContent()
     {
-        // Load the font for the standard text.
-        _font = Core.Content.Load<SpriteFont>("fonts/norseRegular");
-
         // Load the font for the title text.
-        _font5x = Content.Load<SpriteFont>("fonts/norseRegular_5x");
+        _font5x = Content.Load<SpriteFont>("fonts/04B_30_5x");
 
-        // Load pattern texture
-        // TODO: maybe a bigger pattern
+        // Load background pattern texture
         _backgroundPattern = Content.Load<Texture2D>("images/background-pattern");
 
-        // Load the sound effect to play when ui actions occur.
+        // Load sfx for UI actions
         _uiSoundEffect = Core.Content.Load<SoundEffect>("audio/ui");
+
+        // Load the texture atlas for the UI from xml file
+        _atlas = TextureAtlas.FromFile(Core.Content, "images/atlas-definition.xml");
     }
 
     public override void Update(GameTime gameTime)
     {
-        // If the user presses enter, switch to the game scene.
-        if (Core.Input.Keyboard.WasKeyJustPressed(Keys.Enter))
-        {
-            Core.ChangeScene(new GameScene());
-        }
-
-        // Update offsets to scroll down and right
+        // Update the offsets for the background pattern wrapping so that it
+        // scrolls down and to the right.
         float offset = _scrollSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
         _backgroundOffset.X -= offset;
         _backgroundOffset.Y -= offset;
 
-        // Cap offset to the size of the pattern
+        // Ensure that the offsets do not go beyond the texture bounds so it is
+        // a seamless wrap.
         _backgroundOffset.X %= _backgroundPattern.Width;
         _backgroundOffset.Y %= _backgroundPattern.Height;
 
@@ -295,17 +296,9 @@ public class TitleScene : Scene
     {
         Core.GraphicsDevice.Clear(new Color(32, 40, 78, 255));
 
-        // Draw background pattern
+        // Draw the background pattern first using the PointWrap sampler state.
         Core.SpriteBatch.Begin(samplerState: SamplerState.PointWrap);
-        Core.SpriteBatch.Draw(
-            _backgroundPattern,             // texture  
-            _backgroundDestination,         // destination rectangle
-            new Rectangle(                  // source rectangle
-                _backgroundOffset.ToPoint(),
-                _backgroundDestination.Size
-            ),
-            Color.White * 0.5f              // color
-        );
+        Core.SpriteBatch.Draw(_backgroundPattern, _backgroundDestination, new Rectangle(_backgroundOffset.ToPoint(), _backgroundDestination.Size), Color.White * 0.5f);
         Core.SpriteBatch.End();
 
         if (_titleScreenButtonsPanel.IsVisible)
@@ -316,72 +309,19 @@ public class TitleScene : Scene
             // The color to use for the drop shadow text.
             Color dropShadowColor = Color.Black * 0.5f;
 
-            // Draw the Dwarf text slightly offset from it is original position and
+            // Draw the Dungeon text slightly offset from it is original position and
             // with a transparent color to give it a drop shadow.
-            Core.SpriteBatch.DrawString(
-                _font5x,
-                DWARF_TEXT,
-                _dwarfTextPos + new Vector2(10, 10),
-                dropShadowColor,
-                0.0f,
-                _dwarfTextOrigin,
-                1.0f,
-                SpriteEffects.None,
-                1.0f
-            );
+            Core.SpriteBatch.DrawString(_font5x, DUNGEON_TEXT, _dungeonTextPos + new Vector2(10, 10), dropShadowColor, 0.0f, _dungeonTextOrigin, 1.0f, SpriteEffects.None, 1.0f);
 
-            // Draw the Dwarf text on top of that at its original position.
-            Core.SpriteBatch.DrawString(
-                _font5x,
-                DWARF_TEXT,
-                _dwarfTextPos,
-                Color.White,
-                0.0f,
-                _dwarfTextOrigin,
-                1.0f,
-                SpriteEffects.None,
-                1.0f
-            );
+            // Draw the Dungeon text on top of that at its original position.
+            Core.SpriteBatch.DrawString(_font5x, DUNGEON_TEXT, _dungeonTextPos, Color.White, 0.0f, _dungeonTextOrigin, 1.0f, SpriteEffects.None, 1.0f);
 
             // Draw the Down Under text slightly offset from it is original position and
             // with a transparent color to give it a drop shadow.
-            Core.SpriteBatch.DrawString(
-                _font5x,
-                DOWN_UNDER_TEXT,
-                _downUnderTextPos + new Vector2(10, 10),
-                dropShadowColor,
-                0.0f,
-                _downUnderTextOrigin,
-                1.0f,
-                SpriteEffects.None,
-                1.0f
-            );
+            Core.SpriteBatch.DrawString(_font5x, DOWN_UNDER_TEXT, _downUnderTextPos + new Vector2(10, 10), dropShadowColor, 0.0f, _downUnderTextOrigin, 1.0f, SpriteEffects.None, 1.0f);
 
             // Draw the Down Under text on top of that at its original position.
-            Core.SpriteBatch.DrawString(
-                _font5x,
-                DOWN_UNDER_TEXT,
-                _downUnderTextPos,
-                Color.White,
-                0.0f,
-                _downUnderTextOrigin,
-                1.0f,
-                SpriteEffects.None,
-                1.0f
-            );
-
-            // Draw the press enter text.
-            Core.SpriteBatch.DrawString(
-                _font,
-                PRESS_ENTER_TEXT,
-                _pressEnterPos,
-                Color.White,
-                0.0f,
-                _pressEnterOrigin,
-                1.0f,
-                SpriteEffects.None,
-                0.0f
-            );
+            Core.SpriteBatch.DrawString(_font5x, DOWN_UNDER_TEXT, _downUnderTextPos, Color.White, 0.0f, _downUnderTextOrigin, 1.0f, SpriteEffects.None, 1.0f);
 
             // Always end the sprite batch when finished.
             Core.SpriteBatch.End();

@@ -4,15 +4,15 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>c:/Users/suter/01_MonoGame/DwarfDownUnder/DwarfDownUnder/Content/audio/bounce.wav</File>
-    <File>c:/Users/suter/01_MonoGame/DwarfDownUnder/DwarfDownUnder/Content/audio/collect.wav</File>
-    <File>c:/Users/suter/01_MonoGame/DwarfDownUnder/DwarfDownUnder/Content/audio/theme.ogg</File>
-    <File>c:/Users/suter/01_MonoGame/DwarfDownUnder/DwarfDownUnder/Content/audio/ui.wav</File>
-    <File>c:/Users/suter/01_MonoGame/DwarfDownUnder/DwarfDownUnder/Content/fonts/norseRegular_5x.spritefont</File>
-    <File>c:/Users/suter/01_MonoGame/DwarfDownUnder/DwarfDownUnder/Content/fonts/norseRegular.spritefont</File>
-    <File>c:/Users/suter/01_MonoGame/DwarfDownUnder/DwarfDownUnder/Content/images/logo.png</File>
-    <File>c:/Users/suter/01_MonoGame/DwarfDownUnder/DwarfDownUnder/Content/images/Pickaxe45_24px.png</File>
-    <File>c:/Users/suter/01_MonoGame/DwarfDownUnder/DwarfDownUnder/Content/images/TileSet-complete.png</File>
+    <File>C:/Users/suter/02_MonoGame/DwarfDownUnder/DwarfDownUnder/Content/audio/bounce.wav</File>
+    <File>C:/Users/suter/02_MonoGame/DwarfDownUnder/DwarfDownUnder/Content/audio/collect.wav</File>
+    <File>C:/Users/suter/02_MonoGame/DwarfDownUnder/DwarfDownUnder/Content/audio/theme.ogg</File>
+    <File>C:/Users/suter/02_MonoGame/DwarfDownUnder/DwarfDownUnder/Content/audio/ui.wav</File>
+    <File>C:/Users/suter/02_MonoGame/DwarfDownUnder/DwarfDownUnder/Content/fonts/04B_30_5x.spritefont</File>
+    <File>C:/Users/suter/02_MonoGame/DwarfDownUnder/DwarfDownUnder/Content/fonts/04B_30.spritefont</File>
+    <File>C:/Users/suter/02_MonoGame/DwarfDownUnder/DwarfDownUnder/Content/images/atlas.png</File>
+    <File>C:/Users/suter/02_MonoGame/DwarfDownUnder/DwarfDownUnder/Content/images/background-pattern.png</File>
+    <File>C:/Users/suter/02_MonoGame/DwarfDownUnder/DwarfDownUnder/Content/images/logo.png</File>
   </SourceFiles>
   <DestFiles>
     <File xsi:nil="true" />
@@ -22,7 +22,7 @@
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
-    <File>images/background-pattern.png</File>
-    <File>images/atlas.png</File>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
   </DestFiles>
 </SourceFileCollection>

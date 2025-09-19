@@ -18,9 +18,10 @@ public class TextureAtlas
     /// </summary>
     public Texture2D Texture { get; set; }
 
-    // Stores animations added to this atlas.
-    private Dictionary<string, Animation> _animations;
-
+    /// <summary>
+    /// Stores animations added to this atlas.
+    /// </summary>
+    public Dictionary<string, Animation> _animations;
 
     /// <summary>
     /// Creates a new texture atlas.
@@ -85,7 +86,7 @@ public class TextureAtlas
     }
 
     /// <summary>
-    /// Creates a new texture atlas based on a texture atlas xml configuration file.
+    /// Creates a new texture atlas based a texture atlas xml configuration file.
     /// </summary>
     /// <param name="content">The content manager used to load the texture for the atlas.</param>
     /// <param name="fileName">The path to the xml file, relative to the content root directory.</param>
@@ -197,6 +198,17 @@ public class TextureAtlas
     }
 
     /// <summary>
+    /// Creates a new animated sprite using the animation from this texture atlas with the specified name.
+    /// </summary>
+    /// <param name="animationName">The name of the animation to use.</param>
+    /// <returns>A new AnimatedSprite using the animation with the specified name.</returns>
+    public AnimatedSprite CreateAnimatedSprite(string animationName)
+    {
+        Animation animation = GetAnimation(animationName);
+        return new AnimatedSprite(animation);
+    }
+
+    /// <summary>
     /// Adds the given animation to this texture atlas with the specified name.
     /// </summary>
     /// <param name="animationName">The name of the animation to add.</param>
@@ -225,16 +237,4 @@ public class TextureAtlas
     {
         return _animations.Remove(animationName);
     }
-
-    /// <summary>
-    /// Creates a new animated sprite using the animation from this texture atlas with the specified name.
-    /// </summary>
-    /// <param name="animationName">The name of the animation to use.</param>
-    /// <returns>A new AnimatedSprite using the animation with the specified name.</returns>
-    public AnimatedSprite CreateAnimatedSprite(string animationName)
-    {
-        Animation animation = GetAnimation(animationName);
-        return new AnimatedSprite(animation);
-    }
-
 }

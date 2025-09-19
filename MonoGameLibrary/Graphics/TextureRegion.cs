@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 namespace MonoGameLibrary.Graphics;
 
 /// <summary>
-/// Represents a rectangular region within a texture.
+/// Represents a rectangular region of a texture.
 /// </summary>
 public class TextureRegion
 {
@@ -27,6 +27,26 @@ public class TextureRegion
     /// Gets the height, in pixels, of this texture region.
     /// </summary>
     public int Height => SourceRectangle.Height;
+
+    /// <summary>
+    /// Gets the top normalized texture coordinate of this region.
+    /// </summary>
+    public float TopTextureCoordinate => SourceRectangle.Top / (float)Texture.Height;
+
+    /// <summary>
+    /// Gets the bottom normalized texture coordinate of this region.
+    /// </summary>
+    public float BottomTextureCoordinate => SourceRectangle.Bottom / (float)Texture.Height;
+
+    /// <summary>
+    ///  Gets the left normalized texture coordinate of this region.
+    /// </summary>
+    public float LeftTextureCoordinate => SourceRectangle.Left / (float)Texture.Width;
+
+    /// <summary>
+    /// Gets the right normalized texture coordinate of this region.
+    /// </summary>
+    public float RightTextureCoordinate => SourceRectangle.Right / (float)Texture.Width;
 
     /// <summary>
     /// Creates a new texture region.

@@ -15,7 +15,7 @@ public class InputManager
     public MouseInfo Mouse { get; private set; }
 
     /// <summary>
-    /// Gets the state information of a gamepad.
+    /// Gets the state information of a gamepad. Up to 4 gamepads are supported.
     /// </summary>
     public GamePadInfo[] GamePads { get; private set; }
 
@@ -48,4 +48,6 @@ public class InputManager
             GamePads[i].Update(gameTime);
         }
     }
+
 }
+

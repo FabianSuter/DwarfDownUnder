@@ -205,7 +205,4 @@ public class MouseInfo
             CurrentState.XButton2
         );
     }
-
-
-
 }

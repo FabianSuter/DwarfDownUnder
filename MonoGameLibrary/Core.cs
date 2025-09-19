@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -18,10 +18,10 @@ public class Core : Game
     /// </summary>
     public static Core Instance => s_instance;
 
-    // Currently active scene
+    // The currently active scene
     private static Scene s_activeScene;
 
-    // Next scene to switch to, if any
+    // The next scene to switch, if there's one
     private static Scene s_nextScene;
 
     /// <summary>
@@ -125,11 +125,12 @@ public class Core : Game
 
     protected override void UnloadContent()
     {
-        // Dispose of the audio controller.
+        // Dispose the audio controller.
         Audio.Dispose();
 
         base.UnloadContent();
     }
+
 
     protected override void Update(GameTime gameTime)
     {

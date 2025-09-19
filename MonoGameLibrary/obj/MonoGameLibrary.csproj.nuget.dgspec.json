@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\suter\\01_MonoGame\\DwarfDownUnder\\MonoGameLibrary\\MonoGameLibrary.csproj": {}
+    "C:\\Users\\suter\\02_MonoGame\\DwarfDownUnder\\MonoGameLibrary\\MonoGameLibrary.csproj": {}
   },
   "projects": {
-    "c:\\Users\\suter\\01_MonoGame\\DwarfDownUnder\\MonoGameLibrary\\MonoGameLibrary.csproj": {
+    "C:\\Users\\suter\\02_MonoGame\\DwarfDownUnder\\MonoGameLibrary\\MonoGameLibrary.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\suter\\01_MonoGame\\DwarfDownUnder\\MonoGameLibrary\\MonoGameLibrary.csproj",
+        "projectUniqueName": "C:\\Users\\suter\\02_MonoGame\\DwarfDownUnder\\MonoGameLibrary\\MonoGameLibrary.csproj",
         "projectName": "MonoGameLibrary",
-        "projectPath": "c:\\Users\\suter\\01_MonoGame\\DwarfDownUnder\\MonoGameLibrary\\MonoGameLibrary.csproj",
+        "projectPath": "C:\\Users\\suter\\02_MonoGame\\DwarfDownUnder\\MonoGameLibrary\\MonoGameLibrary.csproj",
         "packagesPath": "C:\\Users\\suter\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\suter\\01_MonoGame\\DwarfDownUnder\\MonoGameLibrary\\obj\\",
+        "outputPath": "C:\\Users\\suter\\02_MonoGame\\DwarfDownUnder\\MonoGameLibrary\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\suter\\AppData\\Roaming\\NuGet\\NuGet.Config"

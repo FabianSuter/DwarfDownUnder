@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "wR6e7n5l6qc=",
+  "dgSpecHash": "1FvCUHEf19o=",
   "success": true,
-  "projectFilePath": "c:\\Users\\suter\\01_MonoGame\\DwarfDownUnder\\MonoGameLibrary\\MonoGameLibrary.csproj",
+  "projectFilePath": "C:\\Users\\suter\\02_MonoGame\\DwarfDownUnder\\MonoGameLibrary\\MonoGameLibrary.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\suter\\.nuget\\packages\\monogame.framework.desktopgl\\3.8.4\\monogame.framework.desktopgl.3.8.4.nupkg.sha512",
     "C:\\Users\\suter\\.nuget\\packages\\monogame.library.openal\\1.23.1.10\\monogame.library.openal.1.23.1.10.nupkg.sha512",

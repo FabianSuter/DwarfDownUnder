@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>c:/Users/suter/01_MonoGame/DwarfDownUnder/DwarfDownUnder/Content/images/logo.png</SourceFile>
+  <SourceFile>C:/Users/suter/02_MonoGame/DwarfDownUnder/DwarfDownUnder/Content/images/logo.png</SourceFile>
   <SourceTime>2025-09-08T12:38:08.6030891+02:00</SourceTime>
-  <DestFile>c:/Users/suter/01_MonoGame/DwarfDownUnder/DwarfDownUnder/Content/bin/DesktopGL/Content/images/logo.xnb</DestFile>
-  <DestTime>2025-09-15T17:24:55.9946323+02:00</DestTime>
+  <DestFile>C:/Users/suter/02_MonoGame/DwarfDownUnder/DwarfDownUnder/Content/bin/DesktopGL/Content/images/logo.xnb</DestFile>
+  <DestTime>2025-09-19T19:57:58.9854256+02:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2025-06-02T12:31:02+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

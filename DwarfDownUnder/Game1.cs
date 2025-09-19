@@ -9,7 +9,7 @@ namespace DwarfDownUnder;
 
 public class Game1 : Core
 {
-    // Background music
+    // Define background theme song
     private Song _themeSong;
 
     public Game1() : base("Dwarf Down Under", 1280, 800, false)
@@ -52,12 +52,11 @@ public class Game1 : Core
         GumService.Default.Renderer.Camera.Zoom = 4.0f;
     }
 
-
     protected override void Initialize()
     {
         base.Initialize();
 
-        // Start playing background theme
+        // Start background music
         Audio.PlaySong(_themeSong);
 
         // Initialize Gum UI system
@@ -69,7 +68,7 @@ public class Game1 : Core
 
     protected override void LoadContent()
     {
-        // Load the background theme music.
+        // Load background theme
         _themeSong = Content.Load<Song>("audio/theme");
     }
 }
