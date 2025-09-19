@@ -1,8 +1,13 @@
 using System;
+using Gum.DataTypes;
+using Gum.Wireframe;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using MonoGameGum;
+using Gum.Forms.Controls;
+using MonoGameGum.GueDeriving;
 using MonoGameLibrary;
 using MonoGameLibrary.Graphics;
 using MonoGameLibrary.Input;
@@ -48,6 +53,28 @@ public class GameScene : Scene
     // Origin of score text
     private Vector2 _scoreTextOrigin;
 
+    // A reference to the pause panel UI element so we can set its visibility
+    // when the game is paused.
+    private Panel _pausePanel;
+
+    // A reference to the resume button UI element so we can focus it
+    // when the game is paused.
+    private Button _resumeButton;
+
+    // The UI sound effect to play when a UI event is triggered.
+    private SoundEffect _uiSoundEffect;
+
+    private void PauseGame()
+    {
+        // Make the pause panel UI element visible.
+        _pausePanel.IsVisible = true;
+
+        // Set the resume button to have focus
+        _resumeButton.IsFocused = true;
+    }
+
+
+
     public override void Initialize()
     {
         // Also call LoadContent
@@ -80,6 +107,8 @@ public class GameScene : Scene
         // Set origin of score text left centered
         float scoreTextYOrigin = _font.MeasureString("Score").Y * 0.5f;
         _scoreTextOrigin = new Vector2(0, scoreTextYOrigin);
+
+        InitializeUI();
     }
 
     public override void LoadContent()
@@ -104,10 +133,89 @@ public class GameScene : Scene
 
         // Load font
         _font = Core.Content.Load<SpriteFont>("fonts/norseRegular");
+
+        // Load the UI sound effect.
+        _uiSoundEffect = Core.Content.Load<SoundEffect>("audio/ui");
+    }
+
+    private void CreatePausePanel()
+    {
+        _pausePanel = new Panel();
+        _pausePanel.Anchor(Anchor.Center);
+        _pausePanel.Visual.WidthUnits = DimensionUnitType.Absolute;
+        _pausePanel.Visual.HeightUnits = DimensionUnitType.Absolute;
+        _pausePanel.Visual.Height = 70;
+        _pausePanel.Visual.Width = 264;
+        _pausePanel.IsVisible = false;
+        _pausePanel.AddToRoot();
+
+        var background = new ColoredRectangleRuntime();
+        background.Dock(Dock.Fill);
+        background.Color = Color.DarkBlue;
+        _pausePanel.AddChild(background);
+
+        var textInstance = new TextRuntime();
+        textInstance.Text = "PAUSED";
+        textInstance.X = 10f;
+        textInstance.Y = 10f;
+        _pausePanel.AddChild(textInstance);
+
+        _resumeButton = new Button();
+        _resumeButton.Text = "RESUME";
+        _resumeButton.Anchor(Anchor.BottomLeft);
+        _resumeButton.Visual.X = 9f;
+        _resumeButton.Visual.Y = -9f;
+        _resumeButton.Visual.Width = 80;
+        _resumeButton.Click += HandleResumeButtonClicked;
+        _pausePanel.AddChild(_resumeButton);
+
+        var quitButton = new Button();
+        quitButton.Text = "QUIT";
+        quitButton.Anchor(Anchor.BottomRight);
+        quitButton.Visual.X = -9f;
+        quitButton.Visual.Y = -9f;
+        quitButton.Width = 80;
+        quitButton.Click += HandleQuitButtonClicked;
+
+        _pausePanel.AddChild(quitButton);
+    }
+
+    private void HandleResumeButtonClicked(object sender, EventArgs e)
+    {
+        // A UI interaction occurred, play the sound effect
+        Core.Audio.PlaySoundEffect(_uiSoundEffect);
+
+        // Make the pause panel invisible to resume the game.
+        _pausePanel.IsVisible = false;
+    }
+
+    private void HandleQuitButtonClicked(object sender, EventArgs e)
+    {
+        // A UI interaction occurred, play the sound effect
+        Core.Audio.PlaySoundEffect(_uiSoundEffect);
+
+        // Go back to the title scene.
+        Core.ChangeScene(new TitleScene());
+    }
+
+    private void InitializeUI()
+    {
+        GumService.Default.Root.Children.Clear();
+
+        CreatePausePanel();
     }
 
     public override void Update(GameTime gameTime)
     {
+        // Ensure the UI is updated
+        GumService.Default.Update(gameTime);
+
+        // If the game is paused, do not continue
+        if (_pausePanel.IsVisible)
+        {
+            return;
+        }
+
         // Update dwarf sprite
         _dwarf.Update(gameTime);
 
@@ -173,7 +281,7 @@ public class GameScene : Scene
         // If the escape key is pressed, return to the title screen.
         if (Core.Input.Keyboard.WasKeyJustPressed(Keys.Escape))
         {
-            Core.ChangeScene(new TitleScene());
+            PauseGame();
         }
 
         // If the space key is held down, the movement speed increases by 1.5
@@ -239,5 +347,8 @@ public class GameScene : Scene
 
         // Always end the sprite batch when finished.
         Core.SpriteBatch.End();
+
+        // Draw the Gum UI
+        GumService.Default.Draw();
     }
 }

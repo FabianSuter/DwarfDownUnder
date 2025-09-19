@@ -78,3 +78,9 @@ c:\Users\suter\01_MonoGame\DwarfDownUnder\DwarfDownUnder\bin\Debug\net8.0\Conten
 c:\Users\suter\01_MonoGame\DwarfDownUnder\DwarfDownUnder\bin\Debug\net8.0\Content\fonts\norseRegular.fnt
 c:\Users\suter\01_MonoGame\DwarfDownUnder\DwarfDownUnder\bin\Debug\net8.0\Content\fonts\norseRegular_5x.xnb
 c:\Users\suter\01_MonoGame\DwarfDownUnder\DwarfDownUnder\bin\Debug\net8.0\Content\images\background-pattern.xnb
+c:\Users\suter\01_MonoGame\DwarfDownUnder\DwarfDownUnder\bin\Debug\net8.0\Content\audio\ui.xnb
+c:\Users\suter\01_MonoGame\DwarfDownUnder\DwarfDownUnder\bin\Debug\net8.0\GumCommon.dll
+c:\Users\suter\01_MonoGame\DwarfDownUnder\DwarfDownUnder\bin\Debug\net8.0\FlatRedBall.InterpolationCore.dll
+c:\Users\suter\01_MonoGame\DwarfDownUnder\DwarfDownUnder\bin\Debug\net8.0\MonoGameGum.dll
+c:\Users\suter\01_MonoGame\DwarfDownUnder\DwarfDownUnder\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+c:\Users\suter\01_MonoGame\DwarfDownUnder\DwarfDownUnder\bin\Debug\net8.0\TextCopy.dll
