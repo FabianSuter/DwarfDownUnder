@@ -15,15 +15,16 @@ None yet
 
 ### Audio
 - Sound Effects as a free bundle from [Kronbits](https://kronbits.itch.io/retrosfx)
-- Background theme from [Luis Zuno](https://soundcloud.com/ansimuz/tracks), currently *Exploration*
+- Background song theme from [Luis Zuno](https://soundcloud.com/ansimuz/tracks), currently *Exploration*
 
 ### Fonts
-- Sprite font from [Joël Carrouché](https://www.1001fonts.com/users/joelcarrouche/), currently *Norse Regular*
+- ~~Sprite font from [Joël Carrouché](https://www.1001fonts.com/users/joelcarrouche/), currently *Norse Regular*~~
+- Sprite font *04b_30.ttf* from [dafont.com](https://www.dafont.com/04b-30.font) (Norse Regular causes crashes so far, don't know why ¯\\_(ツ)_/¯)
 - Fonts in UI converted from *.ttf* to *.fnt* and *.png* with [Hiero](https://docs.flatredball.com/gum/gum-tool/gum-elements/text/use-custom-font#creating-fonts-with-hiero)
 
 ### UI
 - This project uses the *Gum* layout engine and framework, namely version `2025.8.3.3`
 
-## Lizenz-Info
+## Licence info
 
 This repository follows the  [Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA) 4.0-License](https://creativecommons.org/licenses/by-sa/4.0/)
