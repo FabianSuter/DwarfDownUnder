@@ -9,8 +9,7 @@ namespace DwarfDownUnder.GameObjects;
 
 public class Dwarf
 {
-    // A constant value that represents the amount of time to wait between
-    // movement updates.
+    // A constant value that represents the amount of time to wait between movement updates.
     private static readonly TimeSpan s_movementTime = TimeSpan.FromMilliseconds(200);
 
     // The amount of time that has elapsed since the last movement update.
@@ -19,17 +18,13 @@ public class Dwarf
     // Normalized value (0-1) representing progress between movement ticks for visual interpolation
     private float _movementProgress;
 
-    // The next direction to apply to the head of the dwarf chain during the
-    // next movement update.
+    // The next direction to apply to the dwarf chain during the next movement update.
     private Vector2 _nextDirection;
 
-    // The number of pixels to move the head segment during the movement cycle.
+    // The number of pixels to move the dwarf during the movement cycle.
     private float _stride;
 
-    // Tracks the segments of the dwarf chain.
-    // private List<DwarfSegment> _segments;
-
-    // The AnimatedSprite used when drawing each dwarf segment
+    // The AnimatedSprite used when drawing the dwarf
     private AnimatedSprite _sprite;
 
     // Buffer to queue inputs input by player during input polling.
@@ -38,15 +33,11 @@ public class Dwarf
     // The maximum size of the buffer queue.
     private const int MAX_BUFFER_SIZE = 2;
 
+    // Current dwarf position
     public Vector2 At;
 
+    // Position dwarf is moving to
     public Vector2 To;
-
-    /// <summary>
-    /// Event that is raised if it is detected that the head segment of the dwarf
-    /// has collided with a body segment.
-    /// </summary>
-    // public event EventHandler BodyCollision;
 
     /// <summary>
     /// Creates a new Dwarf using the specified animated sprite.
@@ -76,13 +67,6 @@ public class Dwarf
         To = startingPosition + new Vector2(_stride, 0);
         _nextDirection = Vector2.UnitY;
 
-        // Add it to the segment collection.
-        // _segments.Add(head);
-
-        // Set the initial next direction as the same direction the head is
-        // moving.
-        // _nextDirection = head.Direction;
-
         // Zero out the movement timer.
         _movementTimer = TimeSpan.Zero;
 
@@ -92,6 +76,8 @@ public class Dwarf
 
     private void HandleInput()
     {
+        // TODO: Maybe also handle sprites here?
+
         Vector2 potentialNextDirection = Vector2.Zero;
 
         if (GameController.MoveUp())
@@ -138,65 +124,13 @@ public class Dwarf
             _nextDirection = _inputBuffer.Dequeue();
         }
 
-        // Capture the value of the head segment
-        // DwarfSegment head = _segments[0];
-
-        // Update the direction the head is supposed to move in to the
-        // next direction cached.
-        // head.Direction = _nextDirection;
-
         // Update the head's "at" position to be where it was moving "to"
         At = To;
 
         // Update the head's "to" position to the next tile in the direction
         // it is moving.
         To = At + _nextDirection * _stride;
-
-        // Insert the new adjusted value for the head at the front of the
-        // segments and remove the tail segment. This effectively moves
-        // the entire chain forward without needing to loop through every
-        // segment and update its "at" and "to" positions.
-        // _segments.Insert(0, head);
-        // _segments.RemoveAt(_segments.Count - 1);
-
-        // Iterate through all of the segments except the head and check
-        // if they are at the same position as the head. If they are, then
-        // the head is colliding with a body segment and a body collision
-        // has occurred.
-        // for (int i = 1; i < _segments.Count; i++)
-        // {
-        //     DwarfSegment segment = _segments[i];
-
-        //     if (head.At == segment.At)
-        //     {
-        //         if (BodyCollision != null)
-        //         {
-        //             BodyCollision.Invoke(this, EventArgs.Empty);
-        //         }
-
-        //         return;
-        //     }
-        // }
     }
-
-    /// <summary>
-    /// Informs the dwarf to grow by one segment.
-    /// </summary>
-    // public void Grow()
-    // {
-    //     // Capture the value of the tail segment
-    //     DwarfSegment tail = _segments[_segments.Count - 1];
-
-    //     // Create a new tail segment that is positioned a grid cell in the
-    //     // reverse direction from the tail moving to the tail.
-    //     DwarfSegment newTail = new DwarfSegment();
-    //     newTail.At = tail.To + tail.ReverseDirection * _stride;
-    //     newTail.To = tail.At;
-    //     newTail.Direction = Vector2.Normalize(tail.At - newTail.At);
-
-    //     // Add the new tail segment
-    //     _segments.Add(newTail);
-    // }
 
     /// <summary>
     /// Updates the dwarf.

@@ -55,6 +55,23 @@
 /processorParam:TextureFormat=Compressed
 /build:fonts/04B_30.spritefont
 
+#begin fonts/Rune_Eng1_5x.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:fonts/Rune_Eng1_5x.spritefont
+
+#begin fonts/Rune_Eng1.fnt
+/copy:fonts/Rune_Eng1.fnt
+
+#begin fonts/Rune_Eng1.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:fonts/Rune_Eng1.spritefont
+
 #begin images/atlas-definition.xml
 /copy:images/atlas-definition.xml
 

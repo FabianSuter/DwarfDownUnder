@@ -53,3 +53,7 @@ C:\Users\suter\02_MonoGame\DwarfDownUnder\DwarfDownUnder\obj\Debug\net8.0\refint
 C:\Users\suter\02_MonoGame\DwarfDownUnder\DwarfDownUnder\obj\Debug\net8.0\DwarfDownUnder.pdb
 C:\Users\suter\02_MonoGame\DwarfDownUnder\DwarfDownUnder\obj\Debug\net8.0\DwarfDownUnder.genruntimeconfig.cache
 C:\Users\suter\02_MonoGame\DwarfDownUnder\DwarfDownUnder\obj\Debug\net8.0\ref\DwarfDownUnder.dll
+C:\Users\suter\02_MonoGame\DwarfDownUnder\DwarfDownUnder\bin\Debug\net8.0\Content\fonts\norseRegular.fnt
+C:\Users\suter\02_MonoGame\DwarfDownUnder\DwarfDownUnder\bin\Debug\net8.0\Content\fonts\Rune_Eng1.xnb
+C:\Users\suter\02_MonoGame\DwarfDownUnder\DwarfDownUnder\bin\Debug\net8.0\Content\fonts\Rune_Eng1_5x.xnb
+C:\Users\suter\02_MonoGame\DwarfDownUnder\DwarfDownUnder\bin\Debug\net8.0\Content\fonts\Rune_Eng1.fnt
