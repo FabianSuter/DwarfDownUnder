@@ -63,16 +63,35 @@ public class Dwarf
     // public Vector2 To;
 
     /// <summary>
-    /// Creates a new Dwarf using the specified animated sprite.
+    /// Creates a new Dwarf and fills the dict with animations from the atlas. Default sprite is "idle-front".
     /// </summary>
-    /// <param name="sprite">The AnimatedSprite to use when drawing the dwarf.</param>
-    public Dwarf(AnimatedSprite sprite)
+    /// <param name="atlas">The TextureAtlas to pull the animations from</param>
+    public Dwarf(TextureAtlas atlas)
     {
-        var key = "idle-front";
-        _spriteDict.Add(key, sprite);
-        _sprite = _spriteDict[key]; // Set initial sprite as default
+        // Create the sprites for the dwarf from the atlas.
+        AnimatedSprite dwarfIdleFront = atlas.CreateAnimatedSprite("dwarfB-idle-front");
+        dwarfIdleFront.Scale = new Vector2(2.0f, 2.0f);
+        AnimatedSprite dwarfIdleBack = atlas.CreateAnimatedSprite("dwarfB-idle-back");
+        dwarfIdleBack.Scale = new Vector2(2.0f, 2.0f);
+        AnimatedSprite dwarfIdleRight = atlas.CreateAnimatedSprite("dwarfB-idle-right");
+        dwarfIdleRight.Scale = new Vector2(2.0f, 2.0f);
+        AnimatedSprite dwarfWalkFront = atlas.CreateAnimatedSprite("dwarfB-walk-front");
+        dwarfWalkFront.Scale = new Vector2(2.0f, 2.0f);
+        AnimatedSprite dwarfWalkBack = atlas.CreateAnimatedSprite("dwarfB-walk-back");
+        dwarfWalkBack.Scale = new Vector2(2.0f, 2.0f);
+        AnimatedSprite dwarfWalkRight = atlas.CreateAnimatedSprite("dwarfB-walk-right");
+        dwarfWalkRight.Scale = new Vector2(2.0f, 2.0f);
 
-        // _sprite = sprite;
+        // Add the sprites to the sprite dictionary
+        _spriteDict.Add("idle-front", dwarfIdleFront);
+        _spriteDict.Add("idle-back", dwarfIdleBack);
+        _spriteDict.Add("idle-right", dwarfIdleRight);
+        _spriteDict.Add("walk-front", dwarfWalkFront);
+        _spriteDict.Add("walk-back", dwarfWalkBack);
+        _spriteDict.Add("walk-right", dwarfWalkRight);
+
+        // Set initial sprite as default
+        _sprite = _spriteDict["idle-front"];
     }
 
     /// <summary>

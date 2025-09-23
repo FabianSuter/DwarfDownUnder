@@ -140,30 +140,8 @@ public class GameScene : Scene
         _tilemap = Tilemap.FromFile(Content, "images/tilemap-definition.xml");
         _tilemap.Scale = new Vector2(2.0f, 2.0f);
 
-        // Create the initial sprite for the dwarf from the atlas.
-        AnimatedSprite dwarfIdleFront = atlas.CreateAnimatedSprite("dwarfB-idle-front");
-        dwarfIdleFront.Scale = new Vector2(2.0f, 2.0f);
-
         // Create the dwarf.
-        _dwarf = new Dwarf(dwarfIdleFront);
-
-        // Add the other animations for the dwarf.
-        AnimatedSprite dwarfIdleBack = atlas.CreateAnimatedSprite("dwarfB-idle-back");
-        dwarfIdleBack.Scale = new Vector2(2.0f, 2.0f);
-        AnimatedSprite dwarfIdleRight = atlas.CreateAnimatedSprite("dwarfB-idle-right");
-        dwarfIdleRight.Scale = new Vector2(2.0f, 2.0f);
-        AnimatedSprite dwarfWalkFront = atlas.CreateAnimatedSprite("dwarfB-walk-front");
-        dwarfWalkFront.Scale = new Vector2(2.0f, 2.0f);
-        AnimatedSprite dwarfWalkBack = atlas.CreateAnimatedSprite("dwarfB-walk-back");
-        dwarfWalkBack.Scale = new Vector2(2.0f, 2.0f);
-        AnimatedSprite dwarfWalkRight = atlas.CreateAnimatedSprite("dwarfB-walk-right");
-        dwarfWalkRight.Scale = new Vector2(2.0f, 2.0f);
-
-        _dwarf.AddAnimation("idle-back", dwarfIdleBack);
-        _dwarf.AddAnimation("idle-right", dwarfIdleRight);
-        _dwarf.AddAnimation("walk-front", dwarfWalkFront);
-        _dwarf.AddAnimation("walk-back", dwarfWalkBack);
-        _dwarf.AddAnimation("walk-right", dwarfWalkRight);
+        _dwarf = new Dwarf(atlas);
 
         // Create the animated sprite for the bat from the atlas.
         AnimatedSprite batAnimation = atlas.CreateAnimatedSprite("bat-animation");
