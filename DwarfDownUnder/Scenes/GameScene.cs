@@ -223,14 +223,14 @@ public class GameScene : Scene
         // Next check if the dwarf is colliding with the wall by validating if
         // it is within the bounds of the room.  If it is outside the room
         // bounds, then it collided with a wall which triggers a game over.
-        if (dwarfBounds.Top < _roomBounds.Top ||
-        dwarfBounds.Bottom > _roomBounds.Bottom ||
-        dwarfBounds.Left < _roomBounds.Left ||
-        dwarfBounds.Right > _roomBounds.Right)
-        {
-            GameOver();
-            return;
-        }
+        // if (dwarfBounds.Top < _roomBounds.Top ||
+        // dwarfBounds.Bottom > _roomBounds.Bottom ||
+        // dwarfBounds.Left < _roomBounds.Left ||
+        // dwarfBounds.Right > _roomBounds.Right)
+        // {
+        //     GameOver();
+        //     return;
+        // }
 
         // Finally, check if the bat is colliding with a wall by validating if
         // it is within the bounds of the room.  If it is outside the room

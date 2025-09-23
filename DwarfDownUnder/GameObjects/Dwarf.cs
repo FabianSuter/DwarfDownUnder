@@ -48,7 +48,7 @@ public class Dwarf
     private const int MAX_BUFFER_SIZE = 2;
 
     // A constant value that represents the amount of time to wait between movement updates.
-    private static readonly TimeSpan s_movementTime = TimeSpan.FromMilliseconds(100);
+    private static readonly TimeSpan s_movementTime = TimeSpan.FromMilliseconds(150);
 
     // The amount of time that has elapsed since the last movement update.
     private TimeSpan _movementTimer;
@@ -68,8 +68,11 @@ public class Dwarf
     // Current dwarf position
     public Vector2 At;
 
+    // Dwarf position before movement
+    public Vector2 From;
+
     // Position dwarf is moving to
-    // public Vector2 To;
+    public Vector2 To;
 
     /// <summary>
     /// Creates a new Dwarf and fills the dict with animations from the atlas. Default sprite is "idle-front".
@@ -395,7 +398,9 @@ public class Dwarf
         }
 
         // Update position
+        From = At;
         At += potentialNextDirection * _stride;
+        To = At;
 
         // Update current state to next state
         _currState = _nextState;
@@ -429,7 +434,7 @@ public class Dwarf
         }
 
         // Update the movement lerp offset amount
-        // _movementProgress = (float)(_movementTimer.TotalSeconds / s_movementTime.TotalSeconds);
+        _movementProgress = (float)(_movementTimer.TotalSeconds / s_movementTime.TotalSeconds);
     }
 
     /// <summary>
@@ -438,18 +443,18 @@ public class Dwarf
     public void Draw()
     {
         // Calculate the visual position of the dwarf at the moment by
-        // lerping between its "at" and "to" position by the movement
+        // lerping between its "from" and "to" position by the movement
         // offset lerp amount
-        // Vector2 pos = Vector2.Lerp(At, To, _movementProgress);
+        Vector2 pos = Vector2.Lerp(From, To, _movementProgress);
 
         // Draw the dwarf sprite at the calculated visual position
         if (_currState == DwarfState.WalkL || _currState == DwarfState.IdleL)
         {
-            _sprite.Draw(Core.SpriteBatch, At, SpriteEffects.FlipHorizontally);
+            _sprite.Draw(Core.SpriteBatch, pos, SpriteEffects.FlipHorizontally);
         }
         else
         {
-            _sprite.Draw(Core.SpriteBatch, At);
+            _sprite.Draw(Core.SpriteBatch, pos);
         }
     }
 
