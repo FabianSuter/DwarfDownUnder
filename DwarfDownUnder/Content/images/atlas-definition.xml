@@ -2,8 +2,34 @@
 <TextureAtlas>
     <Texture>images/atlas</Texture>
     <Regions>
-        <Region name="dwarf-1" x="528" y="208" width="16" height="16" />
-        <Region name="dwarf-2" x="624" y="208" width="16" height="16" />
+        <Region name="dwarfB-0" x="528" y="208" width="16" height="16" />
+        <Region name="dwarfB-1" x="576" y="208" width="16" height="16" />
+        <Region name="dwarfB-2" x="624" y="208" width="16" height="16" />
+        <Region name="dwarfB-3" x="672" y="208" width="16" height="16" />
+        <Region name="dwarfB-4" x="528" y="256" width="16" height="16" />
+        <Region name="dwarfB-5" x="576" y="256" width="16" height="16" />
+        <Region name="dwarfB-6" x="624" y="256" width="16" height="16" />
+        <Region name="dwarfB-7" x="672" y="256" width="16" height="16" />
+        <Region name="dwarfB-8" x="528" y="304" width="16" height="16" />
+        <Region name="dwarfB-9" x="576" y="304" width="16" height="16" />
+        <Region name="dwarfB-10" x="624" y="304" width="16" height="16" />
+        <Region name="dwarfB-11" x="672" y="304" width="16" height="16" />
+        <Region name="dwarfB-12" x="528" y="352" width="16" height="16" />
+        <Region name="dwarfB-13" x="576" y="352" width="16" height="16" />
+        <Region name="dwarfB-14" x="624" y="352" width="16" height="16" />
+        <Region name="dwarfB-15" x="672" y="352" width="16" height="16" />
+        <Region name="dwarfB-16" x="528" y="400" width="16" height="16" />
+        <Region name="dwarfB-17" x="576" y="400" width="16" height="16" />
+        <Region name="dwarfB-18" x="624" y="400" width="16" height="16" />
+        <Region name="dwarfB-19" x="672" y="400" width="16" height="16" />
+        <Region name="dwarfB-20" x="528" y="448" width="16" height="16" />
+        <Region name="dwarfB-21" x="576" y="448" width="16" height="16" />
+        <Region name="dwarfB-22" x="624" y="448" width="16" height="16" />
+        <Region name="dwarfB-23" x="672" y="448" width="16" height="16" />
+        <Region name="dwarfB-24" x="528" y="496" width="16" height="16" />
+        <Region name="dwarfB-25" x="576" y="496" width="16" height="16" />
+        <Region name="dwarfB-26" x="624" y="496" width="16" height="16" />
+        <Region name="dwarfB-27" x="672" y="496" width="16" height="16" />
         <Region name="bat-1" x="624" y="128" width="16" height="16" />
         <Region name="bat-2" x="640" y="128" width="16" height="16" />
         <Region name="bat-3" x="640" y="144" width="16" height="16" />
@@ -16,9 +42,38 @@
         <Region name="slider-max-background" x="994" y="16" width="11" height="10" />
     </Regions>
     <Animations>
-        <Animation name="dwarf-animation" delay="200">
-            <Frame region="dwarf-1" />
-            <Frame region="dwarf-2" />
+        <Animation name="dwarfB-idle-front" delay="200">
+            <Frame region="dwarfB-0" />
+            <Frame region="dwarfB-2" />
+        </Animation>
+        <Animation name="dwarfB-idle-back" delay="150">
+            <Frame region="dwarfB-4" />
+            <Frame region="dwarfB-6" />
+        </Animation>
+        <Animation name="dwarfB-idle-right" delay="150">
+            <Frame region="dwarfB-8" />
+            <Frame region="dwarfB-10" />
+        </Animation>
+        <Animation name="dwarfB-walk-front" delay="200">
+            <Frame region="dwarfB-0" />
+            <Frame region="dwarfB-1" />
+            <Frame region="dwarfB-0" />
+            <Frame region="dwarfB-3" />
+            <Frame region="dwarfB-0" />
+        </Animation>
+        <Animation name="dwarfB-walk-back" delay="150">
+            <Frame region="dwarfB-4" />
+            <Frame region="dwarfB-5" />
+            <Frame region="dwarfB-4" />
+            <Frame region="dwarfB-7" />
+            <Frame region="dwarfB-4" />
+        </Animation>
+        <Animation name="dwarfB-walk-right" delay="150">
+            <Frame region="dwarfB-8" />
+            <Frame region="dwarfB-9" />
+            <Frame region="dwarfB-8" />
+            <Frame region="dwarfB-11" />
+            <Frame region="dwarfB-8" />
         </Animation>
         <Animation name="bat-animation" delay="200">
             <Frame region="bat-1" />

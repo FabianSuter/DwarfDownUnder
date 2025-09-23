@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using MonoGameLibrary;
 using MonoGameLibrary.Graphics;
 
@@ -9,8 +10,27 @@ namespace DwarfDownUnder.GameObjects;
 
 public class Dwarf
 {
+    // States of dwarf
+    private enum DwarfState
+    {
+        IdleF,  // Facing player
+        WalkF,  // Walking toward player
+        IdleB,  // Facing away from player
+        WalkB,  // Walking away from player
+        IdleL,  // Facing left
+        WalkL,  // Walking left
+        IdleR,  // Facing right
+        WalkR   // Walking right
+    }
+
+    // Current state of dwarf
+    private DwarfState _currState = DwarfState.IdleF;
+
+    // Next state of dwarf
+    private DwarfState _nextState;
+
     // A constant value that represents the amount of time to wait between movement updates.
-    private static readonly TimeSpan s_movementTime = TimeSpan.FromMilliseconds(200);
+    private static readonly TimeSpan s_movementTime = TimeSpan.FromMilliseconds(100);
 
     // The amount of time that has elapsed since the last movement update.
     private TimeSpan _movementTimer;
@@ -18,7 +38,7 @@ public class Dwarf
     // Normalized value (0-1) representing progress between movement ticks for visual interpolation
     private float _movementProgress;
 
-    // The next direction to apply to the dwarf chain during the next movement update.
+    // The next direction to apply to the dwarf during the next movement update.
     private Vector2 _nextDirection;
 
     // The number of pixels to move the dwarf during the movement cycle.
@@ -26,6 +46,9 @@ public class Dwarf
 
     // The AnimatedSprite used when drawing the dwarf
     private AnimatedSprite _sprite;
+
+    // Sprite dict for different movement directions
+    private Dictionary<object, AnimatedSprite> _spriteDict = [];
 
     // Buffer to queue inputs input by player during input polling.
     private Queue<Vector2> _inputBuffer;
@@ -37,7 +60,7 @@ public class Dwarf
     public Vector2 At;
 
     // Position dwarf is moving to
-    public Vector2 To;
+    // public Vector2 To;
 
     /// <summary>
     /// Creates a new Dwarf using the specified animated sprite.
@@ -45,7 +68,21 @@ public class Dwarf
     /// <param name="sprite">The AnimatedSprite to use when drawing the dwarf.</param>
     public Dwarf(AnimatedSprite sprite)
     {
-        _sprite = sprite;
+        var key = "idle-front";
+        _spriteDict.Add(key, sprite);
+        _sprite = _spriteDict[key]; // Set initial sprite as default
+
+        // _sprite = sprite;
+    }
+
+    /// <summary>
+    /// Adds animations of the dwarf
+    /// </summary>
+    /// <param name="key">Key for the added animation. Use normalized vectors</param>
+    /// <param name="sprite">The AnimatedSprite to use when drawing the dwarf</param>
+    public void AddAnimation(object key, AnimatedSprite sprite)
+    {
+        _spriteDict.Add(key, sprite);
     }
 
     /// <summary>
@@ -55,81 +92,254 @@ public class Dwarf
     /// <param name="stride">The total number of pixels to move the head segment during each movement cycle.</param>
     public void Initialize(Vector2 startingPosition, float stride)
     {
-        // Initialize the segment collection.
-        // _segments = new List<DwarfSegment>();
-
         // Set the stride
         _stride = stride;
 
-        // Create the initial head of the dwarf chain.
-        // DwarfSegment head = new DwarfSegment();
+        // Create the initial position
         At = startingPosition;
-        To = startingPosition + new Vector2(_stride, 0);
-        _nextDirection = Vector2.UnitY;
 
         // Zero out the movement timer.
         _movementTimer = TimeSpan.Zero;
 
         // Initialize the input buffer
-        _inputBuffer = new Queue<Vector2>(MAX_BUFFER_SIZE);
+        // _inputBuffer = new Queue<Vector2>(MAX_BUFFER_SIZE);
     }
 
     private void HandleInput()
     {
-        // TODO: Maybe also handle sprites here?
+        switch (_currState)
+        {
+            // If idle and move sync, set next state to walk forward
+            // If idle andother move, set to idle in the direction of movement
+            // Else remain idle forward
+            case DwarfState.IdleF:
+                if (GameController.MoveDown())
+                {
+                    _nextState = DwarfState.WalkF;
+                }
+                else if (GameController.MoveUp())
+                {
+                    _nextState = DwarfState.IdleB;
+                }
+                else if (GameController.MoveLeft())
+                {
+                    _nextState = DwarfState.IdleL;
+                }
+                else if (GameController.MoveRight())
+                {
+                    _nextState = DwarfState.IdleR;
+                }
+                else
+                {
+                    _nextState = DwarfState.IdleF;
+                }
+                break;
+            case DwarfState.IdleB:
+                if (GameController.MoveDown())
+                {
+                    _nextState = DwarfState.IdleF;
+                }
+                else if (GameController.MoveUp())
+                {
+                    _nextState = DwarfState.WalkB;
+                }
+                else if (GameController.MoveLeft())
+                {
+                    _nextState = DwarfState.IdleL;
+                }
+                else if (GameController.MoveRight())
+                {
+                    _nextState = DwarfState.IdleR;
+                }
+                else
+                {
+                    _nextState = DwarfState.IdleB;
+                }
+                break;
+            case DwarfState.IdleL:
+                if (GameController.MoveDown())
+                {
+                    _nextState = DwarfState.IdleF;
+                }
+                else if (GameController.MoveUp())
+                {
+                    _nextState = DwarfState.IdleB;
+                }
+                else if (GameController.MoveLeft())
+                {
+                    _nextState = DwarfState.WalkL;
+                }
+                else if (GameController.MoveRight())
+                {
+                    _nextState = DwarfState.IdleR;
+                }
+                else
+                {
+                    _nextState = DwarfState.IdleL;
+                }
+                break;
+            case DwarfState.IdleR:
+                if (GameController.MoveDown())
+                {
+                    _nextState = DwarfState.IdleF;
+                }
+                else if (GameController.MoveUp())
+                {
+                    _nextState = DwarfState.IdleB;
+                }
+                else if (GameController.MoveLeft())
+                {
+                    _nextState = DwarfState.IdleL;
+                }
+                else if (GameController.MoveRight())
+                {
+                    _nextState = DwarfState.WalkR;
+                }
+                else
+                {
+                    _nextState = DwarfState.IdleR;
+                }
+                break;
 
-        Vector2 potentialNextDirection = Vector2.Zero;
-
-        if (GameController.MoveUp())
-        {
-            potentialNextDirection = -Vector2.UnitY;
-        }
-        else if (GameController.MoveDown())
-        {
-            potentialNextDirection = Vector2.UnitY;
-        }
-        else if (GameController.MoveLeft())
-        {
-            potentialNextDirection = -Vector2.UnitX;
-        }
-        else if (GameController.MoveRight())
-        {
-            potentialNextDirection = Vector2.UnitX;
-        }
-
-        // If a new direction was input, consider adding it to the buffer
-        if (potentialNextDirection != Vector2.Zero && _inputBuffer.Count < MAX_BUFFER_SIZE)
-        {
-            // If the buffer is empty, validate against the current direction;
-            // otherwise, validate against the last buffered direction
-            // Vector2 validateAgainst = _inputBuffer.Count > 0 ?
-            //                         _inputBuffer.Last() :
-            //                         _segments[0].Direction;
-
-            // Only allow direction change if it is not reversing the current
-            // direction.  This prevents the dwarf from backing into itself
-            // float dot = Vector2.Dot(potentialNextDirection, validateAgainst);
-            // if (dot >= 0)
-            // {
-            _inputBuffer.Enqueue(potentialNextDirection);
-            // }
+            // If walking and move sync, remain in walk
+            // If walking and other move, set to idle in the direction of movement
+            // Else set to idle in the direction of movement
+            case DwarfState.WalkF:
+                if (GameController.MoveDown())
+                {
+                    _nextState = DwarfState.WalkF;
+                }
+                else if (GameController.MoveUp())
+                {
+                    _nextState = DwarfState.IdleB;
+                }
+                else if (GameController.MoveLeft())
+                {
+                    _nextState = DwarfState.IdleL;
+                }
+                else if (GameController.MoveRight())
+                {
+                    _nextState = DwarfState.WalkR;
+                }
+                else
+                {
+                    _nextState = DwarfState.IdleF;
+                }
+                break;
+            case DwarfState.WalkB:
+                if (GameController.MoveDown())
+                {
+                    _nextState = DwarfState.IdleF;
+                }
+                else if (GameController.MoveUp())
+                {
+                    _nextState = DwarfState.WalkB;
+                }
+                else if (GameController.MoveLeft())
+                {
+                    _nextState = DwarfState.IdleL;
+                }
+                else if (GameController.MoveRight())
+                {
+                    _nextState = DwarfState.WalkR;
+                }
+                else
+                {
+                    _nextState = DwarfState.IdleB;
+                }
+                break;
+            case DwarfState.WalkL:
+                if (GameController.MoveDown())
+                {
+                    _nextState = DwarfState.IdleF;
+                }
+                else if (GameController.MoveUp())
+                {
+                    _nextState = DwarfState.IdleB;
+                }
+                else if (GameController.MoveLeft())
+                {
+                    _nextState = DwarfState.WalkL;
+                }
+                else if (GameController.MoveRight())
+                {
+                    _nextState = DwarfState.WalkR;
+                }
+                else
+                {
+                    _nextState = DwarfState.IdleL;
+                }
+                break;
+            case DwarfState.WalkR:
+                if (GameController.MoveDown())
+                {
+                    _nextState = DwarfState.IdleF;
+                }
+                else if (GameController.MoveUp())
+                {
+                    _nextState = DwarfState.IdleB;
+                }
+                else if (GameController.MoveLeft())
+                {
+                    _nextState = DwarfState.WalkL;
+                }
+                else if (GameController.MoveRight())
+                {
+                    _nextState = DwarfState.WalkR;
+                }
+                else
+                {
+                    _nextState = DwarfState.IdleR;
+                }
+                break;
+            default:
+                break;
         }
     }
 
     private void Move()
     {
-        // Get the next direction from the input buffer, if available
-        if (_inputBuffer.Count > 0)
+        Vector2 potentialNextDirection = Vector2.Zero;
+
+        switch (_nextState)
         {
-            _nextDirection = _inputBuffer.Dequeue();
+            case DwarfState.IdleF:
+                _sprite = _spriteDict["idle-front"];
+                break;
+            case DwarfState.WalkF:
+                potentialNextDirection = Vector2.UnitY;
+                _sprite = _spriteDict["walk-front"];
+                break;
+            case DwarfState.IdleB:
+                _sprite = _spriteDict["idle-back"];
+                break;
+            case DwarfState.WalkB:
+                potentialNextDirection = -Vector2.UnitY;
+                _sprite = _spriteDict["walk-back"];
+                break;
+            case DwarfState.IdleL:
+                _sprite = _spriteDict["idle-right"];
+                break;
+            case DwarfState.WalkL:
+                potentialNextDirection = -Vector2.UnitX;
+                _sprite = _spriteDict["walk-right"];
+                break;
+            case DwarfState.IdleR:
+                _sprite = _spriteDict["idle-right"];
+                break;
+            case DwarfState.WalkR:
+                potentialNextDirection = Vector2.UnitX;
+                _sprite = _spriteDict["walk-right"];
+                break;
+            default:
+                break;
         }
 
-        // Update the head's "at" position to be where it was moving "to"
-        At = To;
+        // Update position
+        At += potentialNextDirection * _stride;
 
-        // Update the head's "to" position to the next tile in the direction
-        // it is moving.
-        To = At + _nextDirection * _stride;
+        // Update current state to next state
+        _currState = _nextState;
     }
 
     /// <summary>
@@ -156,7 +366,7 @@ public class Dwarf
         }
 
         // Update the movement lerp offset amount
-        _movementProgress = (float)(_movementTimer.TotalSeconds / s_movementTime.TotalSeconds);
+        // _movementProgress = (float)(_movementTimer.TotalSeconds / s_movementTime.TotalSeconds);
     }
 
     /// <summary>
@@ -164,18 +374,20 @@ public class Dwarf
     /// </summary>
     public void Draw()
     {
-        // Iterate through each segment and draw it
-        // foreach (DwarfSegment segment in _segments)
-        // {
-            // Calculate the visual position of the segment at the moment by
-            // lerping between its "at" and "to" position by the movement
-            // offset lerp amount
-            Vector2 pos = Vector2.Lerp(At, To, _movementProgress);
+        // Calculate the visual position of the dwarf at the moment by
+        // lerping between its "at" and "to" position by the movement
+        // offset lerp amount
+        // Vector2 pos = Vector2.Lerp(At, To, _movementProgress);
 
-            // Draw the dwarf sprite at the calculated visual position of this
-            // segment
-            _sprite.Draw(Core.SpriteBatch, pos);
-        // }
+        // Draw the dwarf sprite at the calculated visual position
+        if (_currState == DwarfState.WalkL || _currState == DwarfState.IdleL)
+        {
+            _sprite.Draw(Core.SpriteBatch, At, SpriteEffects.FlipHorizontally);
+        }
+        else
+        {
+            _sprite.Draw(Core.SpriteBatch, At);
+        }
     }
 
     /// <summary>
@@ -184,17 +396,12 @@ public class Dwarf
     /// <returns>A Circle value.</returns>
     public Circle GetBounds()
     {
-        // DwarfSegment head = _segments[0];
-
-        // Calculate the visual position of the head at the moment of this
-        // method call by lerping between the "at" and "to" position by the
-        // movement offset lerp amount
-        Vector2 pos = Vector2.Lerp(At, To, _movementProgress);
+        // Vector2 pos = Vector2.Lerp(At, To, _movementProgress);
 
         // Create the bounds using the calculated visual position of the head.
         Circle bounds = new Circle(
-            (int)(pos.X + (_sprite.Width * 0.5f)),
-            (int)(pos.Y + (_sprite.Height * 0.5f)),
+            (int)(At.X + (_sprite.Width * 0.5f)),
+            (int)(At.Y + (_sprite.Height * 0.5f)),
             (int)(_sprite.Width * 0.5f)
         );
 

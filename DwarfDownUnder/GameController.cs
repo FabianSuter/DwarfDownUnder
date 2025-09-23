@@ -19,10 +19,11 @@ public static class GameController
     /// </summary>
     public static bool MoveUp()
     {
-        return s_keyboard.WasKeyJustPressed(Keys.Up) ||
-               s_keyboard.WasKeyJustPressed(Keys.W) ||
-               s_gamePad.WasButtonJustPressed(Buttons.DPadUp) ||
-               s_gamePad.WasButtonJustPressed(Buttons.LeftThumbstickUp);
+        return s_keyboard.IsKeyDown(Keys.Up) || s_keyboard.IsKeyDown(Keys.W);
+        // return s_keyboard.WasKeyJustPressed(Keys.Up) ||
+        //        s_keyboard.WasKeyJustPressed(Keys.W) ||
+        //        s_gamePad.WasButtonJustPressed(Buttons.DPadUp) ||
+        //        s_gamePad.WasButtonJustPressed(Buttons.LeftThumbstickUp);
     }
 
     /// <summary>
@@ -30,10 +31,11 @@ public static class GameController
     /// </summary>
     public static bool MoveDown()
     {
-        return s_keyboard.WasKeyJustPressed(Keys.Down) ||
-               s_keyboard.WasKeyJustPressed(Keys.S) ||
-               s_gamePad.WasButtonJustPressed(Buttons.DPadDown) ||
-               s_gamePad.WasButtonJustPressed(Buttons.LeftThumbstickDown);
+        return s_keyboard.IsKeyDown(Keys.Down) || s_keyboard.IsKeyDown(Keys.S);
+        // return s_keyboard.WasKeyJustPressed(Keys.Down) ||
+        //        s_keyboard.WasKeyJustPressed(Keys.S) ||
+        //        s_gamePad.WasButtonJustPressed(Buttons.DPadDown) ||
+        //        s_gamePad.WasButtonJustPressed(Buttons.LeftThumbstickDown);
     }
 
     /// <summary>
@@ -41,10 +43,11 @@ public static class GameController
     /// </summary>
     public static bool MoveLeft()
     {
-        return s_keyboard.WasKeyJustPressed(Keys.Left) ||
-               s_keyboard.WasKeyJustPressed(Keys.A) ||
-               s_gamePad.WasButtonJustPressed(Buttons.DPadLeft) ||
-               s_gamePad.WasButtonJustPressed(Buttons.LeftThumbstickLeft);
+        return s_keyboard.IsKeyDown(Keys.Left) || s_keyboard.IsKeyDown(Keys.A);
+        // return s_keyboard.WasKeyJustPressed(Keys.Left) ||
+        //        s_keyboard.WasKeyJustPressed(Keys.A) ||
+        //        s_gamePad.WasButtonJustPressed(Buttons.DPadLeft) ||
+        //        s_gamePad.WasButtonJustPressed(Buttons.LeftThumbstickLeft);
     }
 
     /// <summary>
@@ -52,10 +55,11 @@ public static class GameController
     /// </summary>
     public static bool MoveRight()
     {
-        return s_keyboard.WasKeyJustPressed(Keys.Right) ||
-               s_keyboard.WasKeyJustPressed(Keys.D) ||
-               s_gamePad.WasButtonJustPressed(Buttons.DPadRight) ||
-               s_gamePad.WasButtonJustPressed(Buttons.LeftThumbstickRight);
+        return s_keyboard.IsKeyDown(Keys.Right) || s_keyboard.IsKeyDown(Keys.D);
+        // return s_keyboard.WasKeyJustPressed(Keys.Right) ||
+        //        s_keyboard.WasKeyJustPressed(Keys.D) ||
+        //        s_gamePad.WasButtonJustPressed(Buttons.DPadRight) ||
+        //        s_gamePad.WasButtonJustPressed(Buttons.LeftThumbstickRight);
     }
 
     /// <summary>
