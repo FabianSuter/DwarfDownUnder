@@ -438,8 +438,8 @@ public class Dwarf
 
         // Update the movement lerp offset amount
         _movementProgress = (float)(_movementTimer.TotalSeconds / s_movementTime.TotalSeconds);
-        // Vector2 pos = Vector2.Lerp(From, To, _movementProgress);
-        // _camera.Update(gameTime,pos);
+        Vector2 pos = Vector2.Lerp(From, To, _movementProgress);
+        _camera.Update(gameTime,pos);
     }
 
     /// <summary>
