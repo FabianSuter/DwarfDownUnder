@@ -8,6 +8,8 @@ using MonoGameGum;
 using MonoGameLibrary;
 using MonoGameLibrary.Graphics;
 using MonoGameLibrary.Scenes;
+using MonoGame.Extended.Tiled;
+using MonoGame.Extended.Tiled.Renderers;
 
 namespace DwarfDownUnder.Scenes;
 
@@ -26,8 +28,14 @@ public class GameScene : Scene
     // Reference to the bat.
     private Bat _bat;
 
-    // Defines the tilemap to draw.
-    private Tilemap _tilemap;
+    // // Defines the tilemap to draw.
+    // private Tilemap _tilemap;
+
+    // Define the tiledMap
+    private TiledMap _tiledMap;
+
+    // Define the tiledMap renderer
+    private TiledMapRenderer _tiledMapRenderer;
 
     // Defines the bounds of the room that the dwarf and bat are contained within.
     private Rectangle _roomBounds;
@@ -55,10 +63,10 @@ public class GameScene : Scene
         // setting it in by 1 tile at left, bottom and right, and 2 tiles at the top
         Rectangle screenBounds = Core.GraphicsDevice.PresentationParameters.Bounds;
         _roomBounds = new Rectangle(
-            (int)_tilemap.TileWidth,
-            (int)_tilemap.TileHeight * 2,
-            screenBounds.Width - (int)(_tilemap.TileWidth * 2),
-            screenBounds.Height - (int)(_tilemap.TileHeight * 3)
+            (int)_tiledMap.TileWidth,
+            (int)_tiledMap.TileHeight * 2,
+            screenBounds.Width - (int)(_tiledMap.TileWidth * 2),
+            screenBounds.Height - (int)(_tiledMap.TileHeight * 3)
         );
 
         // Subscribe to the dwarf's BodyCollision event so that a game over
@@ -114,11 +122,11 @@ public class GameScene : Scene
         // Calculate the position for the dwarf, which will be at the center
         // tile of the tile map.
         Vector2 dwarfPos = new Vector2();
-        dwarfPos.X = (_tilemap.Columns / 2) * _tilemap.TileWidth;
-        dwarfPos.Y = (_tilemap.Rows / 2) * _tilemap.TileHeight;
+        dwarfPos.X = (_tiledMap.Width / 2);  //(_tilemap.Columns / 2) * _tilemap.TileWidth;
+        dwarfPos.Y = (_tiledMap.Height / 2); //(_tilemap.Rows / 2) * _tilemap.TileHeight;
 
         // Initialize the dwarf.
-        _dwarf.Initialize(dwarfPos, _tilemap.TileWidth);
+        _dwarf.Initialize(dwarfPos, _tiledMap.TileWidth);
 
         // Initialize the bat.
         _bat.RandomizeVelocity();
@@ -136,16 +144,21 @@ public class GameScene : Scene
         // Create the texture atlas from the XML configuration file.
         TextureAtlas atlas = TextureAtlas.FromFile(Core.Content, "images/atlas-definition.xml");
 
-        // Create the tilemap from the XML configuration file.
-        _tilemap = Tilemap.FromFile(Content, "images/tilemap-definition.xml");
-        _tilemap.Scale = new Vector2(2.0f, 2.0f);
+        // // Create the tilemap from the XML configuration file.
+        // _tilemap = Tilemap.FromFile(Content, "images/tilemap-definition.xml");
+        // _tilemap.Scale = new Vector2(2.0f, 2.0f);
+
+        // Load Tiled map
+        _tiledMap = Content.Load<TiledMap>("tiled/cave_v2");
+        _tiledMapRenderer = new TiledMapRenderer(Core.GraphicsDevice, _tiledMap);
+        // _spriteBatch = new SpriteBatch(Core.GraphicsDevice);
 
         // Create the dwarf.
         _dwarf = new Dwarf(atlas);
 
         // Create the animated sprite for the bat from the atlas.
         AnimatedSprite batAnimation = atlas.CreateAnimatedSprite("bat-animation");
-        batAnimation.Scale = new Vector2(2.0f, 2.0f);
+        // batAnimation.Scale = new Vector2(2.0f, 2.0f);
 
         // Load the bounce sound effect for the bat.
         SoundEffect bounceSoundEffect = Content.Load<SoundEffect>("audio/bounce");
@@ -180,6 +193,9 @@ public class GameScene : Scene
         {
             return;
         }
+
+        // Update the tiled map renderer
+        _tiledMapRenderer.Update(gameTime);
 
         // Update the dwarf.
         _dwarf.Update(gameTime);
@@ -374,8 +390,11 @@ public class GameScene : Scene
         // Begin the sprite batch to prepare for rendering.
         Core.SpriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
-        // Draw the tilemap
-        _tilemap.Draw(Core.SpriteBatch);
+        // // Draw the tilemap
+        // _tilemap.Draw(Core.SpriteBatch);
+
+        // Draw the Tiled map
+        _tiledMapRenderer.Draw();
 
         // Draw the dwarf.
         _dwarf.Draw();

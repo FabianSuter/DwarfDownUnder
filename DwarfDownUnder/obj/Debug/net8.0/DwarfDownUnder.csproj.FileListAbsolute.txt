@@ -57,3 +57,7 @@ C:\Users\suter\02_MonoGame\DwarfDownUnder\DwarfDownUnder\bin\Debug\net8.0\Conten
 C:\Users\suter\02_MonoGame\DwarfDownUnder\DwarfDownUnder\bin\Debug\net8.0\Content\fonts\Rune_Eng1.xnb
 C:\Users\suter\02_MonoGame\DwarfDownUnder\DwarfDownUnder\bin\Debug\net8.0\Content\fonts\Rune_Eng1_5x.xnb
 C:\Users\suter\02_MonoGame\DwarfDownUnder\DwarfDownUnder\bin\Debug\net8.0\Content\fonts\Rune_Eng1.fnt
+C:\Users\suter\02_MonoGame\DwarfDownUnder\DwarfDownUnder\bin\Debug\net8.0\Content\fonts\Rune_Eng1_0.xnb
+C:\Users\suter\02_MonoGame\DwarfDownUnder\DwarfDownUnder\bin\Debug\net8.0\Content\tiled\cave_v2.xnb
+C:\Users\suter\02_MonoGame\DwarfDownUnder\DwarfDownUnder\bin\Debug\net8.0\Content\tiled\tileAtlas.xnb
+C:\Users\suter\02_MonoGame\DwarfDownUnder\DwarfDownUnder\bin\Debug\net8.0\Content\tiled\tileAtlas_0.xnb

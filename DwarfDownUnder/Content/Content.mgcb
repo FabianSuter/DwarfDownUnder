@@ -97,3 +97,13 @@
 #begin images/tilemap-definition.xml
 /copy:images/tilemap-definition.xml
 
+#begin tiled/cave_v2.tmx
+/importer:TiledMapImporter
+/processor:TiledMapProcessor
+/build:tiled/cave_v2.tmx
+
+#begin tiled/tileAtlas.tsx
+/importer:TiledMapTilesetImporter
+/processor:TiledMapTilesetProcessor
+/build:tiled/tileAtlas.tsx
+

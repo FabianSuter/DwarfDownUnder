@@ -13,8 +13,12 @@
     <File>C:/Users/suter/02_MonoGame/DwarfDownUnder/DwarfDownUnder/Content/images/atlas.png</File>
     <File>C:/Users/suter/02_MonoGame/DwarfDownUnder/DwarfDownUnder/Content/images/background-pattern.png</File>
     <File>C:/Users/suter/02_MonoGame/DwarfDownUnder/DwarfDownUnder/Content/images/logo.png</File>
+    <File>C:/Users/suter/02_MonoGame/DwarfDownUnder/DwarfDownUnder/Content/tiled/cave_v2.tmx</File>
+    <File>C:/Users/suter/02_MonoGame/DwarfDownUnder/DwarfDownUnder/Content/tiled/tileAtlas.tsx</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
