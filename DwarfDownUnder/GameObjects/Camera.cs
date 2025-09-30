@@ -12,7 +12,7 @@ public class Camera
 
     public Camera(Vector2 position)
     {
-        BoxingViewportAdapter viewportAdapter = new BoxingViewportAdapter(Core.Window, Core.GraphicsDevice, 800, 480);
+        BoxingViewportAdapter viewportAdapter = new BoxingViewportAdapter(Core.Window, Core.GraphicsDevice, 640, 400);
         _camera = new OrthographicCamera(viewportAdapter);
 
         _cameraPosition = position;

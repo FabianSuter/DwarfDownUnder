@@ -129,6 +129,8 @@ public class Dwarf
 
         // Create the initial position
         At = startingPosition;
+        From = At;
+        To = At;
 
         // Zero out the movement timer.
         _movementTimer = TimeSpan.Zero;
@@ -402,8 +404,7 @@ public class Dwarf
 
         // Update position
         From = At;
-        At += potentialNextDirection * _stride;
-        To = At;
+        To = At + potentialNextDirection * _stride;
 
         // Update current state to next state
         _currState = _nextState;
@@ -421,9 +422,18 @@ public class Dwarf
         // Handle any player input
         HandleInput();
 
-
         // Increment the movement timer by the frame elapsed time.
         _movementTimer += gameTime.ElapsedGameTime;
+
+        // Update the movement lerp offset amount
+        _movementProgress = (float)(_movementTimer.TotalSeconds / s_movementTime.TotalSeconds);
+
+        // Clamp the movement progress to the [0, 1] range
+        if (_movementProgress > 1f) _movementProgress = 1f;
+
+        // Update current position and camera
+        At = Vector2.Lerp(From, To, _movementProgress);
+        _camera.Update(gameTime, At);
 
         // If the movement timer has accumulated enough time to be greater than
         // the movement time threshold, then perform a full movement.
@@ -435,11 +445,6 @@ public class Dwarf
 
             Move();
         }
-
-        // Update the movement lerp offset amount
-        _movementProgress = (float)(_movementTimer.TotalSeconds / s_movementTime.TotalSeconds);
-        Vector2 pos = Vector2.Lerp(From, To, _movementProgress);
-        _camera.Update(gameTime,pos);
     }
 
     /// <summary>
@@ -447,19 +452,14 @@ public class Dwarf
     /// </summary>
     public void Draw()
     {
-        // Calculate the visual position of the dwarf at the moment by
-        // lerping between its "from" and "to" position by the movement
-        // offset lerp amount
-        Vector2 pos = Vector2.Lerp(From, To, _movementProgress);
-
         // Draw the dwarf sprite at the calculated visual position
         if (_currState == DwarfState.WalkL || _currState == DwarfState.IdleL)
         {
-            _sprite.Draw(Core.SpriteBatch, pos, SpriteEffects.FlipHorizontally);
+            _sprite.Draw(Core.SpriteBatch, At, SpriteEffects.FlipHorizontally);
         }
         else
         {
-            _sprite.Draw(Core.SpriteBatch, pos);
+            _sprite.Draw(Core.SpriteBatch, At);
         }
     }
 
@@ -469,8 +469,6 @@ public class Dwarf
     /// <returns>A Circle value.</returns>
     public Circle GetBounds()
     {
-        // Vector2 pos = Vector2.Lerp(At, To, _movementProgress);
-
         // Create the bounds using the calculated visual position of the head.
         Circle bounds = new Circle(
             (int)(At.X + (_sprite.Width * 0.5f)),
