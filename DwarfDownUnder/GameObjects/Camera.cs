@@ -16,7 +16,7 @@ public class Camera
         _camera = new OrthographicCamera(viewportAdapter);
 
         _cameraPosition = position;
-        _camera.ZoomIn(1f);
+        // _camera.ZoomIn(0.5f);
         _camera.LookAt(_cameraPosition);
     }
 
@@ -56,7 +56,7 @@ public class Camera
 
     public void Update(GameTime gameTime, Vector2 position)
     {
-        MoveCamera(gameTime);
+        // MoveCamera(gameTime);
         _camera.LookAt(position);
     }
 
