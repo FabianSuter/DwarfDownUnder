@@ -16,34 +16,48 @@
             }
         },
         "cave_v2.tmx": {
-            "scale": 1.123671875,
+            "scale": 0.75,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 319.93325453660566,
-                "y": 199.7914204268929
+                "x": 304,
+                "y": 76.66666666666663
+            }
+        },
+        "cave_v3.tmx": {
+            "scale": 0.5,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 726,
+                "y": 211
             }
         },
         "tileAtlas.tsx": {
             "scaleInDock": 1,
             "scaleInEditor": 1
+        },
+        "tileAtlas_V2.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 8
         }
     },
     "last.imagePath": "C:/Users/suter/02_MonoGame/DwarfDownUnder/DwarfDownUnder/Content/tiled",
     "map.height": 25,
     "map.lastUsedFormat": "tmx",
-    "map.tileHeight": 16,
-    "map.tileWidth": 16,
+    "map.tileHeight": 32,
+    "map.tileWidth": 32,
     "map.width": 40,
     "openFiles": [
     ],
     "project": "dwarfdownunder.tiled-project",
     "recentFiles": [
+        "cave_v3.tmx",
+        "tileAtlas_V2.tsx",
         "tileAtlas.tsx",
         "cave.tmx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {
-        "height": 16,
-        "width": 16
+        "height": 32,
+        "width": 32
     }
 }

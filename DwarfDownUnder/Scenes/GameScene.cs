@@ -122,8 +122,8 @@ public class GameScene : Scene
         // Calculate the position for the dwarf, which will be at the center
         // tile of the tile map.
         Vector2 dwarfPos = new Vector2();
-        dwarfPos.X = _tiledMap.Width / 2;  //(_tilemap.Columns / 2) * _tilemap.TileWidth;
-        dwarfPos.Y = _tiledMap.Height / 2; //(_tilemap.Rows / 2) * _tilemap.TileHeight;
+        dwarfPos.X = _tiledMap.Width / 2 * _tiledMap.TileWidth;  //(_tilemap.Columns / 2) * _tilemap.TileWidth;
+        dwarfPos.Y = _tiledMap.Height / 2 * _tiledMap.TileHeight; //(_tilemap.Rows / 2) * _tilemap.TileHeight;
 
         // Initialize the dwarf.
         _dwarf.Initialize(dwarfPos, _tiledMap.TileWidth);
@@ -158,7 +158,7 @@ public class GameScene : Scene
 
         // Create the animated sprite for the bat from the atlas.
         AnimatedSprite batAnimation = atlas.CreateAnimatedSprite("bat-animation");
-        batAnimation.Scale = new Vector2(2.0f, 2.0f);
+        // batAnimation.Scale = new Vector2(2.0f, 2.0f);
 
         // Load the bounce sound effect for the bat.
         SoundEffect bounceSoundEffect = Content.Load<SoundEffect>("audio/bounce");
