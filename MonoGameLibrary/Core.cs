@@ -35,6 +35,11 @@ public class Core : Game
     public static new GraphicsDevice GraphicsDevice { get; private set; }
 
     /// <summary>
+    /// Gets the game window that is the rendering surface.
+    /// </summary>
+    public static new GameWindow Window { get; private set; }
+
+    /// <summary>
     /// Gets the sprite batch used for all 2D rendering.
     /// </summary>
     public static SpriteBatch SpriteBatch { get; private set; }
@@ -89,7 +94,7 @@ public class Core : Game
         Graphics.ApplyChanges();
 
         // Set the window title.
-        Window.Title = title;
+        // Window.Title = title;
 
         // Set the core's content manager to a reference of the base Game's
         // content manager.
@@ -109,9 +114,11 @@ public class Core : Game
     {
         base.Initialize();
 
-        // Set the core's graphics device to a reference of the base Game's
-        // graphics device.
+        // Set the core's graphics device to a reference of the base Game's graphics device.
         GraphicsDevice = base.GraphicsDevice;
+
+        // Set the core's window to a reference of the base Game's window.
+        Window = base.Window;
 
         // Create the sprite batch instance.
         SpriteBatch = new SpriteBatch(GraphicsDevice);

@@ -28,6 +28,8 @@ public class Dwarf
     // Next state of dwarf
     private DwarfState _nextState;
 
+    public Camera _camera { get; set; }
+
     // Input types
     private enum InputType
     {
@@ -81,17 +83,17 @@ public class Dwarf
     {
         // Create the sprites for the dwarf from the atlas.
         AnimatedSprite dwarfIdleFront = atlas.CreateAnimatedSprite("dwarfB-idle-front");
-        // dwarfIdleFront.Scale = new Vector2(2.0f, 2.0f);
+        dwarfIdleFront.Scale = new Vector2(2.0f, 2.0f);
         AnimatedSprite dwarfIdleBack = atlas.CreateAnimatedSprite("dwarfB-idle-back");
-        // dwarfIdleBack.Scale = new Vector2(2.0f, 2.0f);
+        dwarfIdleBack.Scale = new Vector2(2.0f, 2.0f);
         AnimatedSprite dwarfIdleRight = atlas.CreateAnimatedSprite("dwarfB-idle-right");
-        // dwarfIdleRight.Scale = new Vector2(2.0f, 2.0f);
+        dwarfIdleRight.Scale = new Vector2(2.0f, 2.0f);
         AnimatedSprite dwarfWalkFront = atlas.CreateAnimatedSprite("dwarfB-walk-front");
-        // dwarfWalkFront.Scale = new Vector2(2.0f, 2.0f);
+        dwarfWalkFront.Scale = new Vector2(2.0f, 2.0f);
         AnimatedSprite dwarfWalkBack = atlas.CreateAnimatedSprite("dwarfB-walk-back");
-        // dwarfWalkBack.Scale = new Vector2(2.0f, 2.0f);
+        dwarfWalkBack.Scale = new Vector2(2.0f, 2.0f);
         AnimatedSprite dwarfWalkRight = atlas.CreateAnimatedSprite("dwarfB-walk-right");
-        // dwarfWalkRight.Scale = new Vector2(2.0f, 2.0f);
+        dwarfWalkRight.Scale = new Vector2(2.0f, 2.0f);
 
         // Add the sprites to the sprite dictionary
         _spriteDict.Add("idle-front", dwarfIdleFront);
@@ -133,6 +135,8 @@ public class Dwarf
 
         // Initialize the input buffer
         _inputBuffer = new Queue<InputType>(MAX_BUFFER_SIZE);
+
+        _camera = new Camera(startingPosition);
     }
 
     private void HandleInput()
@@ -434,6 +438,8 @@ public class Dwarf
 
         // Update the movement lerp offset amount
         _movementProgress = (float)(_movementTimer.TotalSeconds / s_movementTime.TotalSeconds);
+        // Vector2 pos = Vector2.Lerp(From, To, _movementProgress);
+        // _camera.Update(gameTime,pos);
     }
 
     /// <summary>
