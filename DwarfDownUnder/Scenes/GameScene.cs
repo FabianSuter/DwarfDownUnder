@@ -10,6 +10,7 @@ using MonoGameLibrary.Graphics;
 using MonoGameLibrary.Scenes;
 using MonoGame.Extended.Tiled;
 using MonoGame.Extended.Tiled.Renderers;
+using MonoGame.Extended.BitmapFonts;
 
 namespace DwarfDownUnder.Scenes;
 
@@ -49,6 +50,9 @@ public class GameScene : Scene
     private GameSceneUI _ui;
 
     private GameState _state;
+
+    private SpriteFont _font; // DEBUG
+
 
     public override void Initialize()
     {
@@ -126,7 +130,7 @@ public class GameScene : Scene
         dwarfPos.Y = _tiledMap.Height / 2 * _tiledMap.TileHeight; //(_tilemap.Rows / 2) * _tilemap.TileHeight;
 
         // Initialize the dwarf.
-        _dwarf.Initialize(dwarfPos, _tiledMap.TileWidth);
+        _dwarf.Initialize(dwarfPos, _tiledMap.TileWidth, _tiledMap);
 
         // Initialize the spider.
         _spider.RandomizeVelocity();
@@ -168,6 +172,8 @@ public class GameScene : Scene
 
         // Load the collect sound effect.
         _collectSoundEffect = Content.Load<SoundEffect>("audio/collect");
+
+        _font = Core.Content.Load<SpriteFont>("fonts/04B_30"); // DEBUG
     }
 
     public override void Update(GameTime gameTime)
@@ -402,6 +408,30 @@ public class GameScene : Scene
 
         // Draw the spider.
         _spider.Draw();
+
+        // Draw current dwarf position - DEBUG
+        Core.SpriteBatch.DrawString(
+            _font,
+            $"Pos: {_dwarf.At.X}, {_dwarf.At.Y}",
+            new Vector2(640, 0),
+            Color.White,
+            0.0f,
+            Vector2.Zero,
+            1.0f,
+            SpriteEffects.None,
+            0.0f
+        );
+        Core.SpriteBatch.DrawString(
+            _font,
+            $"Tile: {_dwarf.At.X / _tiledMap.TileWidth}, {_dwarf.At.Y / _tiledMap.TileHeight}",
+            new Vector2(640, 32),
+            Color.White,
+            0.0f,
+            Vector2.Zero,
+            1.0f,
+            SpriteEffects.None,
+            0.0f
+        );
 
         // Always end the sprite batch when finished.
         Core.SpriteBatch.End();

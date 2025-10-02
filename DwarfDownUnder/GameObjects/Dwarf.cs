@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MonoGame.Extended.Tiled;
 using MonoGameLibrary;
 using MonoGameLibrary.Graphics;
 
@@ -69,6 +70,8 @@ public class Dwarf
     // Current dwarf position
     public Vector2 At;
 
+    public TileCollision _tileColl;
+
     // Dwarf position before movement
     // public Vector2 From;
 
@@ -121,11 +124,14 @@ public class Dwarf
     /// Initializes the dwarf, can be used to reset it back to an initial state.
     /// </summary>
     /// <param name="startingPosition">The position the dwarf should start at.</param>
-    /// <param name="stride">The total number of pixels to move the head segment during each movement cycle.</param>
-    public void Initialize(Vector2 startingPosition, float stride)
+    /// <param name="stride">The total number of pixels to move the dwarf during each movement cycle.</param>
+    public void Initialize(Vector2 startingPosition, float stride, TiledMap tiledMap)
     {
         // Set the stride
         _stride = stride;
+
+        // Initialize tile collision
+        _tileColl = new TileCollision(tiledMap);
 
         // Create the initial position
         At = startingPosition;
@@ -404,7 +410,12 @@ public class Dwarf
         }
 
         // Update position
-        At += potentialNextDirection * _stride;
+        var targetPos = At + potentialNextDirection * _stride;
+        // Check for collision, if false don't move
+        if (_tileColl.CanMoveTo(targetPos))
+        {
+            At += potentialNextDirection * _stride;
+        }
         // From = At;
         // To = At + potentialNextDirection * _stride;
 
