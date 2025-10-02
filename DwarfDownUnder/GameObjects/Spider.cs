@@ -6,38 +6,38 @@ using MonoGameLibrary.Graphics;
 
 namespace DwarfDownUnder.GameObjects;
 
-public class Bat
+public class Spider
 {
     private const float MOVEMENT_SPEED = 5.0f;
 
-    // The velocity of the bat that defines the direction and how much in that
-    // direction to update the bats position each update cycle.
+    // The velocity of the spider that defines the direction and how much in that
+    // direction to update the spiders position each update cycle.
     private Vector2 _velocity;
 
-    // The AnimatedSprite used when drawing the bat.
+    // The AnimatedSprite used when drawing the spider.
     private AnimatedSprite _sprite;
 
-    // The sound effect to play when the bat bounces off the edge of the room.
+    // The sound effect to play when the spider bounces off the edge of the room.
     private SoundEffect _bounceSoundEffect;
 
     /// <summary>
-    /// Gets or Sets the position of the bat.
+    /// Gets or Sets the position of the spider.
     /// </summary>
     public Vector2 Position { get; set; }
 
     /// <summary>
-    /// Creates a new Bat using the specified animated sprite and sound effect.
+    /// Creates a new Spider using the specified animated sprite and sound effect.
     /// </summary>
-    /// <param name="sprite">The AnimatedSprite ot use when drawing the bat.</param>
-    /// <param name="bounceSoundEffect">The sound effect to play when the bat bounces off a wall.</param>
-    public Bat(AnimatedSprite sprite, SoundEffect bounceSoundEffect)
+    /// <param name="sprite">The AnimatedSprite ot use when drawing the spider.</param>
+    /// <param name="bounceSoundEffect">The sound effect to play when the spider bounces off a wall.</param>
+    public Spider(AnimatedSprite sprite, SoundEffect bounceSoundEffect)
     {
         _sprite = sprite;
         _bounceSoundEffect = bounceSoundEffect;
     }
 
     /// <summary>
-    /// Randomizes the velocity of the bat.
+    /// Randomizes the velocity of the spider.
     /// </summary>
     public void RandomizeVelocity()
     {
@@ -55,9 +55,9 @@ public class Bat
     }
 
     /// <summary>
-    /// Handles a bounce event when the bat collides with a wall or boundary.
+    /// Handles a bounce event when the spider collides with a wall or boundary.
     /// </summary>
-    /// <param name="normal">The normal vector of the surface the bat is bouncing against.</param>
+    /// <param name="normal">The normal vector of the surface the spider is bouncing against.</param>
     public void Bounce(Vector2 normal)
     {
         Vector2 newPosition = Position;
@@ -91,7 +91,7 @@ public class Bat
     }
 
     /// <summary>
-    /// Returns a Circle value that represents collision bounds of the bat.
+    /// Returns a Circle value that represents collision bounds of the spider.
     /// </summary>
     /// <returns>A Circle value.</returns>
     public Circle GetBounds()
@@ -104,7 +104,7 @@ public class Bat
     }
 
     /// <summary>
-    /// Updates the bat.
+    /// Updates the spider.
     /// </summary>
     /// <param name="gameTime">A snapshot of the timing values for the current update cycle.</param>
     public void Update(GameTime gameTime)
@@ -112,12 +112,12 @@ public class Bat
         // Update the animated sprite
         _sprite.Update(gameTime);
 
-        // Update the position of the bat based on the velocity.
+        // Update the position of the spider based on the velocity.
         Position += _velocity;
     }
 
     /// <summary>
-    /// Draws the bat.
+    /// Draws the spider.
     /// </summary>
     public void Draw()
     {

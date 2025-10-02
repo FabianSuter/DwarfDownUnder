@@ -25,8 +25,8 @@ public class GameScene : Scene
     // Reference to the dwarf.
     private Dwarf _dwarf;
 
-    // Reference to the bat.
-    private Bat _bat;
+    // Reference to the spider.
+    private Spider _spider;
 
     // // Defines the tilemap to draw.
     // private Tilemap _tilemap;
@@ -37,10 +37,10 @@ public class GameScene : Scene
     // Define the tiledMap renderer
     private TiledMapRenderer _tiledMapRenderer;
 
-    // Defines the bounds of the room that the dwarf and bat are contained within.
+    // Defines the bounds of the room that the dwarf and spider are contained within.
     private Rectangle _roomBounds;
 
-    // The sound effect to play when the dwarf eats a bat.
+    // The sound effect to play when the dwarf eats a spider.
     private SoundEffect _collectSoundEffect;
 
     // Tracks the players score.
@@ -128,9 +128,9 @@ public class GameScene : Scene
         // Initialize the dwarf.
         _dwarf.Initialize(dwarfPos, _tiledMap.TileWidth);
 
-        // Initialize the bat.
-        _bat.RandomizeVelocity();
-        PositionBatAwayFromDwarf();
+        // Initialize the spider.
+        _spider.RandomizeVelocity();
+        PositionSpiderAwayFromDwarf();
 
         // Reset the score.
         _score = 0;
@@ -156,15 +156,15 @@ public class GameScene : Scene
         // Create the dwarf.
         _dwarf = new Dwarf(atlas);
 
-        // Create the animated sprite for the bat from the atlas.
-        AnimatedSprite batAnimation = atlas.CreateAnimatedSprite("bat-animation");
-        // batAnimation.Scale = new Vector2(2.0f, 2.0f);
+        // Create the animated sprite for the spider from the atlas.
+        AnimatedSprite spiderAnimation = atlas.CreateAnimatedSprite("spider-animation");
+        spiderAnimation.Scale = new Vector2(2.0f, 2.0f);
 
-        // Load the bounce sound effect for the bat.
+        // Load the bounce sound effect for the spider.
         SoundEffect bounceSoundEffect = Content.Load<SoundEffect>("audio/bounce");
 
-        // Create the bat.
-        _bat = new Bat(batAnimation, bounceSoundEffect);
+        // Create the spider.
+        _spider = new Spider(spiderAnimation, bounceSoundEffect);
 
         // Load the collect sound effect.
         _collectSoundEffect = Content.Load<SoundEffect>("audio/collect");
@@ -200,8 +200,8 @@ public class GameScene : Scene
         // Update the dwarf.
         _dwarf.Update(gameTime);
 
-        // Update the bat.
-        _bat.Update(gameTime);
+        // Update the spider.
+        _spider.Update(gameTime);
 
         // Perform collision checks.
         CollisionChecks();
@@ -209,19 +209,19 @@ public class GameScene : Scene
 
     private void CollisionChecks()
     {
-        // Capture the current bounds of the dwarf and bat.
+        // Capture the current bounds of the dwarf and spider.
         Circle dwarfBounds = _dwarf.GetBounds();
-        Circle batBounds = _bat.GetBounds();
+        Circle spiderBounds = _spider.GetBounds();
 
         // FIrst perform a collision check to see if the dwarf is colliding with
-        // the bat, which means the dwarf kills the bat.
-        if (dwarfBounds.Intersects(batBounds))
+        // the spider, which means the dwarf kills the spider.
+        if (dwarfBounds.Intersects(spiderBounds))
         {
-            // Move the bat to a new position away from the dwarf.
-            PositionBatAwayFromDwarf();
+            // Move the spider to a new position away from the dwarf.
+            PositionSpiderAwayFromDwarf();
 
-            // Randomize the velocity of the bat.
-            _bat.RandomizeVelocity();
+            // Randomize the velocity of the spider.
+            _spider.RandomizeVelocity();
 
             // Tell the dwarf to grow.
             // _dwarf.Grow();
@@ -248,30 +248,30 @@ public class GameScene : Scene
         //     return;
         // }
 
-        // Finally, check if the bat is colliding with a wall by validating if
+        // Finally, check if the spider is colliding with a wall by validating if
         // it is within the bounds of the room.  If it is outside the room
-        // bounds, then it collided with a wall, and the bat should bounce
+        // bounds, then it collided with a wall, and the spider should bounce
         // off of that wall.
-        if (batBounds.Top < _roomBounds.Top)
+        if (spiderBounds.Top < _roomBounds.Top)
         {
-            _bat.Bounce(Vector2.UnitY);
+            _spider.Bounce(Vector2.UnitY);
         }
-        else if (batBounds.Bottom > _roomBounds.Bottom)
+        else if (spiderBounds.Bottom > _roomBounds.Bottom)
         {
-            _bat.Bounce(-Vector2.UnitY);
+            _spider.Bounce(-Vector2.UnitY);
         }
 
-        if (batBounds.Left < _roomBounds.Left)
+        if (spiderBounds.Left < _roomBounds.Left)
         {
-            _bat.Bounce(Vector2.UnitX);
+            _spider.Bounce(Vector2.UnitX);
         }
-        else if (batBounds.Right > _roomBounds.Right)
+        else if (spiderBounds.Right > _roomBounds.Right)
         {
-            _bat.Bounce(-Vector2.UnitX);
+            _spider.Bounce(-Vector2.UnitX);
         }
     }
 
-    private void PositionBatAwayFromDwarf()
+    private void PositionSpiderAwayFromDwarf()
     {
         // Calculate the position that is in the center of the bounds
         // of the room.
@@ -287,22 +287,22 @@ public class GameScene : Scene
         // center of the dwarf.
         Vector2 centerToDwarf = dwarfCenter - roomCenter;
 
-        // Get the bounds of the bat.
-        Circle batBounds =_bat.GetBounds();
+        // Get the bounds of the spider.
+        Circle spiderBounds = _spider.GetBounds();
 
         // Calculate the amount of padding we will add to the new position of
-        // the bat to ensure it is not sticking to walls
-        int padding = batBounds.Radius * 2;
+        // the spider to ensure it is not sticking to walls
+        int padding = spiderBounds.Radius * 2;
 
-        // Calculate the new position of the bat by finding which component of
+        // Calculate the new position of the spider by finding which component of
         // the center to dwarf vector (X or Y) is larger and in which direction.
-        Vector2 newBatPosition = Vector2.Zero;
+        Vector2 newSpiderPosition = Vector2.Zero;
         if (Math.Abs(centerToDwarf.X) > Math.Abs(centerToDwarf.Y))
         {
             // The dwarf is closer to either the left or right wall, so the Y
             // position will be a random position between the top and bottom
             // walls.
-            newBatPosition.Y = Random.Shared.Next(
+            newSpiderPosition.Y = Random.Shared.Next(
                 _roomBounds.Top + padding,
                 _roomBounds.Bottom - padding
             );
@@ -310,14 +310,14 @@ public class GameScene : Scene
             if (centerToDwarf.X > 0)
             {
                 // The dwarf is closer to the right side wall, so place the
-                // bat on the left side wall.
-                newBatPosition.X = _roomBounds.Left + padding;
+                // spider on the left side wall.
+                newSpiderPosition.X = _roomBounds.Left + padding;
             }
             else
             {
                 // The dwarf is closer to the left side wall, so place the
-                // bat on the right side wall.
-                newBatPosition.X = _roomBounds.Right - padding * 2;
+                // spider on the right side wall.
+                newSpiderPosition.X = _roomBounds.Right - padding * 2;
             }
         }
         else
@@ -325,27 +325,27 @@ public class GameScene : Scene
             // The dwarf is closer to either the top or bottom wall, so the X
             // position will be a random position between the left and right
             // walls.
-            newBatPosition.X = Random.Shared.Next(
+            newSpiderPosition.X = Random.Shared.Next(
                 _roomBounds.Left + padding,
                 _roomBounds.Right - padding
             );
 
             if (centerToDwarf.Y > 0)
             {
-                // The dwarf is closer to the top wall, so place the bat on the
+                // The dwarf is closer to the top wall, so place the spider on the
                 // bottom wall.
-                newBatPosition.Y = _roomBounds.Top + padding;
+                newSpiderPosition.Y = _roomBounds.Top + padding;
             }
             else
             {
-                // The dwarf is closer to the bottom wall, so place the bat on
+                // The dwarf is closer to the bottom wall, so place the spider on
                 // the top wall.
-                newBatPosition.Y = _roomBounds.Bottom - padding * 2;
+                newSpiderPosition.Y = _roomBounds.Bottom - padding * 2;
             }
         }
 
-        // Assign the new bat position.
-        _bat.Position = newBatPosition;
+        // Assign the new spider position.
+        _spider.Position = newSpiderPosition;
     }
 
     // private void OnDwarfBodyCollision(object sender, EventArgs args)
@@ -400,8 +400,8 @@ public class GameScene : Scene
         // Draw the dwarf.
         _dwarf.Draw();
 
-        // Draw the bat.
-        _bat.Draw();
+        // Draw the spider.
+        _spider.Draw();
 
         // Always end the sprite batch when finished.
         Core.SpriteBatch.End();

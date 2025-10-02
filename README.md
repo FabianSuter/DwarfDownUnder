@@ -2,14 +2,17 @@
 ## Info
 This project serves as an assignment for the *Advanced C#* class at [University West](https://www.hv.se/) during the fall semester of 2025.
 
-## Disclaimer
+## Declarations & Sources
 
-None yet
-
-## Sources
+### General
+- This game was developed with the [MonoGame framework](https://monogame.net/)
+- The majority of the MonoGameLibrary is from one of the [tutorials](https://docs.monogame.net/articles/tutorials/index.html)
+- To handle Tiled maps (see below) and for other helpful additions [MonoGame Extended](https://docs.monogame.net/articles/tutorials/index.html) was also included
 
 ### Images
 - Tileset as an asset pack from [lyime](https://lyime.itch.io/)
+    - Resized background stuff to 32x32 px (originally 16x16)
+    - World building done in [Tiled editor](https://www.mapeditor.org/)
 - Background in title done by myself with [LibreSprite](https://libresprite.github.io/#!/)
 - UI font png done with Hiero (see below)
 
