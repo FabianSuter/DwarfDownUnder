@@ -29,7 +29,3 @@ This project serves as an assignment for the *Advanced C#* class at [University 
 
 ### UI
 - This project uses the *Gum* layout engine and framework, namely version `2025.8.3.3`
-
-## Licence info
-
-This repository follows the  [Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA) 4.0-License](https://creativecommons.org/licenses/by-sa/4.0/)
