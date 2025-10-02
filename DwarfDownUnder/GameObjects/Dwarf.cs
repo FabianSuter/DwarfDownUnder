@@ -43,10 +43,10 @@ public class Dwarf
     private InputType _nextInp;
 
     // Buffer to queue inputs input by player during input polling.
-    private Queue<InputType> _inputBuffer;
+    // private Queue<InputType> _inputBuffer;
 
     // The maximum size of the buffer queue.
-    private const int MAX_BUFFER_SIZE = 2;
+    // private const int MAX_BUFFER_SIZE = 2;
 
     // A constant value that represents the amount of time to wait between movement updates.
     private static readonly TimeSpan s_movementTime = TimeSpan.FromMilliseconds(150);
@@ -55,7 +55,7 @@ public class Dwarf
     private TimeSpan _movementTimer;
 
     // Normalized value (0-1) representing progress between movement ticks for visual interpolation
-    private float _movementProgress;
+    // private float _movementProgress;
 
     // The number of pixels to move the dwarf during the movement cycle.
     private float _stride;
@@ -70,10 +70,10 @@ public class Dwarf
     public Vector2 At;
 
     // Dwarf position before movement
-    public Vector2 From;
+    // public Vector2 From;
 
     // Position dwarf is moving to
-    public Vector2 To;
+    // public Vector2 To;
 
     /// <summary>
     /// Creates a new Dwarf and fills the dict with animations from the atlas. Default sprite is "idle-front".
@@ -129,14 +129,14 @@ public class Dwarf
 
         // Create the initial position
         At = startingPosition;
-        From = At;
-        To = At;
+        // From = At;
+        // To = At;
 
         // Zero out the movement timer.
         _movementTimer = TimeSpan.Zero;
 
         // Initialize the input buffer
-        _inputBuffer = new Queue<InputType>(MAX_BUFFER_SIZE);
+        // _inputBuffer = new Queue<InputType>(MAX_BUFFER_SIZE);
 
         // _camera = new Camera(startingPosition);
     }
@@ -162,206 +162,207 @@ public class Dwarf
             _currInput = InputType.Right;
         }
 
-        if (_inputBuffer.Count < MAX_BUFFER_SIZE)
-        {
-            _inputBuffer.Enqueue(_currInput);
-        }
+        // if (_inputBuffer.Count < MAX_BUFFER_SIZE)
+        // {
+        //     _inputBuffer.Enqueue(_currInput);
+        // }
     }
 
     private void UpdateDwarfState()
     {
-        if (_inputBuffer.Count > 0)
-        {
-            _nextInp = _inputBuffer.Dequeue();
-        }
+        // if (_inputBuffer.Count > 0)
+        // {
+        //     _nextInp = _inputBuffer.Dequeue();
+        // }
+        _nextInp = _currInput;
         switch (_currState)
-            {
-                // If idle and move sync, set next state to walk forward
-                // If idle andother move, set to idle in the direction of movement
-                // Else remain idle forward
-                case DwarfState.IdleF:
-                    if (_nextInp == InputType.Down)
-                    {
-                        _nextState = DwarfState.WalkF;
-                    }
-                    else if (_nextInp == InputType.Up)
-                    {
-                        _nextState = DwarfState.IdleB;
-                    }
-                    else if (_nextInp == InputType.Left)
-                    {
-                        _nextState = DwarfState.IdleL;
-                    }
-                    else if (_nextInp == InputType.Right)
-                    {
-                        _nextState = DwarfState.IdleR;
-                    }
-                    else
-                    {
-                        _nextState = DwarfState.IdleF;
-                    }
-                    break;
-                case DwarfState.IdleB:
-                    if (_nextInp == InputType.Down)
-                    {
-                        _nextState = DwarfState.IdleF;
-                    }
-                    else if (_nextInp == InputType.Up)
-                    {
-                        _nextState = DwarfState.WalkB;
-                    }
-                    else if (_nextInp == InputType.Left)
-                    {
-                        _nextState = DwarfState.IdleL;
-                    }
-                    else if (_nextInp == InputType.Right)
-                    {
-                        _nextState = DwarfState.IdleR;
-                    }
-                    else
-                    {
-                        _nextState = DwarfState.IdleB;
-                    }
-                    break;
-                case DwarfState.IdleL:
-                    if (_nextInp == InputType.Down)
-                    {
-                        _nextState = DwarfState.IdleF;
-                    }
-                    else if (_nextInp == InputType.Up)
-                    {
-                        _nextState = DwarfState.IdleB;
-                    }
-                    else if (_nextInp == InputType.Left)
-                    {
-                        _nextState = DwarfState.WalkL;
-                    }
-                    else if (_nextInp == InputType.Right)
-                    {
-                        _nextState = DwarfState.IdleR;
-                    }
-                    else
-                    {
-                        _nextState = DwarfState.IdleL;
-                    }
-                    break;
-                case DwarfState.IdleR:
-                    if (_nextInp == InputType.Down)
-                    {
-                        _nextState = DwarfState.IdleF;
-                    }
-                    else if (_nextInp == InputType.Up)
-                    {
-                        _nextState = DwarfState.IdleB;
-                    }
-                    else if (_nextInp == InputType.Left)
-                    {
-                        _nextState = DwarfState.IdleL;
-                    }
-                    else if (_nextInp == InputType.Right)
-                    {
-                        _nextState = DwarfState.WalkR;
-                    }
-                    else
-                    {
-                        _nextState = DwarfState.IdleR;
-                    }
-                    break;
+        {
+            // If idle and move sync, set next state to walk forward
+            // If idle andother move, set to idle in the direction of movement
+            // Else remain idle forward
+            case DwarfState.IdleF:
+                if (_nextInp == InputType.Down)
+                {
+                    _nextState = DwarfState.WalkF;
+                }
+                else if (_nextInp == InputType.Up)
+                {
+                    _nextState = DwarfState.IdleB;
+                }
+                else if (_nextInp == InputType.Left)
+                {
+                    _nextState = DwarfState.IdleL;
+                }
+                else if (_nextInp == InputType.Right)
+                {
+                    _nextState = DwarfState.IdleR;
+                }
+                else
+                {
+                    _nextState = DwarfState.IdleF;
+                }
+                break;
+            case DwarfState.IdleB:
+                if (_nextInp == InputType.Down)
+                {
+                    _nextState = DwarfState.IdleF;
+                }
+                else if (_nextInp == InputType.Up)
+                {
+                    _nextState = DwarfState.WalkB;
+                }
+                else if (_nextInp == InputType.Left)
+                {
+                    _nextState = DwarfState.IdleL;
+                }
+                else if (_nextInp == InputType.Right)
+                {
+                    _nextState = DwarfState.IdleR;
+                }
+                else
+                {
+                    _nextState = DwarfState.IdleB;
+                }
+                break;
+            case DwarfState.IdleL:
+                if (_nextInp == InputType.Down)
+                {
+                    _nextState = DwarfState.IdleF;
+                }
+                else if (_nextInp == InputType.Up)
+                {
+                    _nextState = DwarfState.IdleB;
+                }
+                else if (_nextInp == InputType.Left)
+                {
+                    _nextState = DwarfState.WalkL;
+                }
+                else if (_nextInp == InputType.Right)
+                {
+                    _nextState = DwarfState.IdleR;
+                }
+                else
+                {
+                    _nextState = DwarfState.IdleL;
+                }
+                break;
+            case DwarfState.IdleR:
+                if (_nextInp == InputType.Down)
+                {
+                    _nextState = DwarfState.IdleF;
+                }
+                else if (_nextInp == InputType.Up)
+                {
+                    _nextState = DwarfState.IdleB;
+                }
+                else if (_nextInp == InputType.Left)
+                {
+                    _nextState = DwarfState.IdleL;
+                }
+                else if (_nextInp == InputType.Right)
+                {
+                    _nextState = DwarfState.WalkR;
+                }
+                else
+                {
+                    _nextState = DwarfState.IdleR;
+                }
+                break;
 
-                // If walking and move sync, remain in walk
-                // If walking and other move, set to idle in the direction of movement
-                // Else set to idle in the direction of movement
-                case DwarfState.WalkF:
-                    if (_nextInp == InputType.Down)
-                    {
-                        _nextState = DwarfState.WalkF;
-                    }
-                    else if (_nextInp == InputType.Up)
-                    {
-                        _nextState = DwarfState.IdleB;
-                    }
-                    else if (_nextInp == InputType.Left)
-                    {
-                        _nextState = DwarfState.IdleL;
-                    }
-                    else if (_nextInp == InputType.Right)
-                    {
-                        _nextState = DwarfState.WalkR;
-                    }
-                    else
-                    {
-                        _nextState = DwarfState.IdleF;
-                    }
-                    break;
-                case DwarfState.WalkB:
-                    if (_nextInp == InputType.Down)
-                    {
-                        _nextState = DwarfState.IdleF;
-                    }
-                    else if (_nextInp == InputType.Up)
-                    {
-                        _nextState = DwarfState.WalkB;
-                    }
-                    else if (_nextInp == InputType.Left)
-                    {
-                        _nextState = DwarfState.IdleL;
-                    }
-                    else if (_nextInp == InputType.Right)
-                    {
-                        _nextState = DwarfState.WalkR;
-                    }
-                    else
-                    {
-                        _nextState = DwarfState.IdleB;
-                    }
-                    break;
-                case DwarfState.WalkL:
-                    if (_nextInp == InputType.Down)
-                    {
-                        _nextState = DwarfState.IdleF;
-                    }
-                    else if (_nextInp == InputType.Up)
-                    {
-                        _nextState = DwarfState.IdleB;
-                    }
-                    else if (_nextInp == InputType.Left)
-                    {
-                        _nextState = DwarfState.WalkL;
-                    }
-                    else if (_nextInp == InputType.Right)
-                    {
-                        _nextState = DwarfState.WalkR;
-                    }
-                    else
-                    {
-                        _nextState = DwarfState.IdleL;
-                    }
-                    break;
-                case DwarfState.WalkR:
-                    if (_nextInp == InputType.Down)
-                    {
-                        _nextState = DwarfState.IdleF;
-                    }
-                    else if (_nextInp == InputType.Up)
-                    {
-                        _nextState = DwarfState.IdleB;
-                    }
-                    else if (_nextInp == InputType.Left)
-                    {
-                        _nextState = DwarfState.WalkL;
-                    }
-                    else if (_nextInp == InputType.Right)
-                    {
-                        _nextState = DwarfState.WalkR;
-                    }
-                    else
-                    {
-                        _nextState = DwarfState.IdleR;
-                    }
-                    break;
-                default:
-                    break;
-            }
+            // If walking and move sync, remain in walk
+            // If walking and other move, set to idle in the direction of movement
+            // Else set to idle in the direction of movement
+            case DwarfState.WalkF:
+                if (_nextInp == InputType.Down)
+                {
+                    _nextState = DwarfState.WalkF;
+                }
+                else if (_nextInp == InputType.Up)
+                {
+                    _nextState = DwarfState.IdleB;
+                }
+                else if (_nextInp == InputType.Left)
+                {
+                    _nextState = DwarfState.IdleL;
+                }
+                else if (_nextInp == InputType.Right)
+                {
+                    _nextState = DwarfState.WalkR;
+                }
+                else
+                {
+                    _nextState = DwarfState.IdleF;
+                }
+                break;
+            case DwarfState.WalkB:
+                if (_nextInp == InputType.Down)
+                {
+                    _nextState = DwarfState.IdleF;
+                }
+                else if (_nextInp == InputType.Up)
+                {
+                    _nextState = DwarfState.WalkB;
+                }
+                else if (_nextInp == InputType.Left)
+                {
+                    _nextState = DwarfState.IdleL;
+                }
+                else if (_nextInp == InputType.Right)
+                {
+                    _nextState = DwarfState.WalkR;
+                }
+                else
+                {
+                    _nextState = DwarfState.IdleB;
+                }
+                break;
+            case DwarfState.WalkL:
+                if (_nextInp == InputType.Down)
+                {
+                    _nextState = DwarfState.IdleF;
+                }
+                else if (_nextInp == InputType.Up)
+                {
+                    _nextState = DwarfState.IdleB;
+                }
+                else if (_nextInp == InputType.Left)
+                {
+                    _nextState = DwarfState.WalkL;
+                }
+                else if (_nextInp == InputType.Right)
+                {
+                    _nextState = DwarfState.WalkR;
+                }
+                else
+                {
+                    _nextState = DwarfState.IdleL;
+                }
+                break;
+            case DwarfState.WalkR:
+                if (_nextInp == InputType.Down)
+                {
+                    _nextState = DwarfState.IdleF;
+                }
+                else if (_nextInp == InputType.Up)
+                {
+                    _nextState = DwarfState.IdleB;
+                }
+                else if (_nextInp == InputType.Left)
+                {
+                    _nextState = DwarfState.WalkL;
+                }
+                else if (_nextInp == InputType.Right)
+                {
+                    _nextState = DwarfState.WalkR;
+                }
+                else
+                {
+                    _nextState = DwarfState.IdleR;
+                }
+                break;
+            default:
+                break;
+        }
     }
 
     private void Move()
@@ -403,8 +404,9 @@ public class Dwarf
         }
 
         // Update position
-        From = At;
-        To = At + potentialNextDirection * _stride;
+        At += potentialNextDirection * _stride;
+        // From = At;
+        // To = At + potentialNextDirection * _stride;
 
         // Update current state to next state
         _currState = _nextState;
@@ -425,14 +427,14 @@ public class Dwarf
         // Increment the movement timer by the frame elapsed time.
         _movementTimer += gameTime.ElapsedGameTime;
 
-        // Update the movement lerp offset amount
-        _movementProgress = (float)(_movementTimer.TotalSeconds / s_movementTime.TotalSeconds);
+        // // Update the movement lerp offset amount
+        // _movementProgress = (float)(_movementTimer.TotalSeconds / s_movementTime.TotalSeconds);
 
-        // Clamp the movement progress to the [0, 1] range
-        if (_movementProgress > 1f) _movementProgress = 1f;
+        // // Clamp the movement progress to the [0, 1] range
+        // if (_movementProgress > 1f) _movementProgress = 1f;
 
-        // Update current position and camera
-        At = Vector2.Lerp(From, To, _movementProgress);
+        // // Update current position and camera
+        // At = Vector2.Lerp(From, To, _movementProgress);
         // _camera.Update(gameTime, At);
 
         // If the movement timer has accumulated enough time to be greater than
