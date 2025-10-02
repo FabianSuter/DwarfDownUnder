@@ -28,7 +28,7 @@ public class Dwarf
     // Next state of dwarf
     private DwarfState _nextState;
 
-    public Camera _camera { get; set; }
+    // public Camera _camera { get; set; }
 
     // Input types
     private enum InputType
@@ -138,7 +138,7 @@ public class Dwarf
         // Initialize the input buffer
         _inputBuffer = new Queue<InputType>(MAX_BUFFER_SIZE);
 
-        _camera = new Camera(startingPosition);
+        // _camera = new Camera(startingPosition);
     }
 
     private void HandleInput()
@@ -433,7 +433,7 @@ public class Dwarf
 
         // Update current position and camera
         At = Vector2.Lerp(From, To, _movementProgress);
-        _camera.Update(gameTime, At);
+        // _camera.Update(gameTime, At);
 
         // If the movement timer has accumulated enough time to be greater than
         // the movement time threshold, then perform a full movement.
