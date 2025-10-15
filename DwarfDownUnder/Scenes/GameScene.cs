@@ -10,7 +10,6 @@ using MonoGameLibrary.Graphics;
 using MonoGameLibrary.Scenes;
 using MonoGame.Extended.Tiled;
 using MonoGame.Extended.Tiled.Renderers;
-using MonoGame.Extended.BitmapFonts;
 
 namespace DwarfDownUnder.Scenes;
 
