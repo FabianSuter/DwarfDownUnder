@@ -2,6 +2,10 @@
 ## Info
 This project serves as an assignment for the *Advanced C#* class at [University West](https://www.hv.se/) during the fall semester of 2025.
 
+## How to Build & Run
+- Install MonoGame on your device ([Getting Started](https://docs.monogame.net/articles/getting_started/index.html))
+- Install MonoGame.Extended on your device ([Installation Guide](https://www.monogameextended.net/docs/getting-started/installation-monogame/))
+
 ## Declarations & Sources
 
 ### General
@@ -23,8 +27,8 @@ This project serves as an assignment for the *Advanced C#* class at [University 
 ### Fonts
 - ~~Sprite font from [Joël Carrouché](https://www.1001fonts.com/users/joelcarrouche/), currently *Norse Regular*~~
 - Sprite font *04b_30.ttf* from [dafont.com](https://www.dafont.com/04b-30.font) 
-    - (Norse Regular causes crashes so far, don't know why ¯\\_(ツ)_/¯)
-    - Any other font crashes, Exception throws "*fontname*_0.xnb could not be found". Searching for error hasn't helped yet.
+    - Wanted to use Norse Regular but causes crashes so far, don't know why ¯\\_(ツ)_/¯)
+    - Any other font crashes apparently too, Exception throws "*fontname*_0.xnb could not be found". Searching for error hasn't helped yet.
 - Fonts in UI converted from *.ttf* to *.fnt* and *.png* with [Hiero](https://docs.flatredball.com/gum/gum-tool/gum-elements/text/use-custom-font#creating-fonts-with-hiero)
 
 ### UI
