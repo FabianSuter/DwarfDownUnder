@@ -5,6 +5,8 @@ using MonoGameLibrary;
 
 namespace DwarfDownUnder.GameObjects;
 
+// NOTE: Currently not used in the game
+
 public class Camera
 {
     private OrthographicCamera _camera;

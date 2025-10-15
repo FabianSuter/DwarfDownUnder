@@ -15,6 +15,7 @@ namespace DwarfDownUnder.Scenes;
 
 public class GameScene : Scene
 {
+    // Defines the different states the game can be in.
     private enum GameState
     {
         Playing,
@@ -46,10 +47,13 @@ public class GameScene : Scene
     // Tracks the players score.
     private int _score;
 
+    // The UI for the game scene.
     private GameSceneUI _ui;
 
+    // The current state of the game.
     private GameState _state;
 
+    // The font used for writing text (tile pos, tile number) - DEBUG
     private SpriteFont _font; // DEBUG
 
 
@@ -172,6 +176,7 @@ public class GameScene : Scene
         // Load the collect sound effect.
         _collectSoundEffect = Content.Load<SoundEffect>("audio/collect");
 
+        // Load the font used for writing text (tile pos, tile number) - DEBUG
         _font = Core.Content.Load<SpriteFont>("fonts/04B_30"); // DEBUG
     }
 
@@ -218,7 +223,7 @@ public class GameScene : Scene
         Circle dwarfBounds = _dwarf.GetBounds();
         Circle spiderBounds = _spider.GetBounds();
 
-        // FIrst perform a collision check to see if the dwarf is colliding with
+        // First perform a collision check to see if the dwarf is colliding with
         // the spider, which means the dwarf kills the spider.
         if (dwarfBounds.Intersects(spiderBounds))
         {
@@ -227,9 +232,6 @@ public class GameScene : Scene
 
             // Randomize the velocity of the spider.
             _spider.RandomizeVelocity();
-
-            // Tell the dwarf to grow.
-            // _dwarf.Grow();
 
             // Increment the score.
             _score += 100;

@@ -13,7 +13,6 @@ public class TileCollision
     /// Creates a new TileCollision object that uses the specified tile layer from the given map
     /// </summary>
     /// <param name="map">The Tiled map that contains the collision layer.</param>
-    /// <param name="layerName">The name of the tile layer to use for collision detection.</param>
     public TileCollision(TiledMap map)
     {
         _collisionLayer = map.GetLayer<TiledMapTileLayer>("collisions");

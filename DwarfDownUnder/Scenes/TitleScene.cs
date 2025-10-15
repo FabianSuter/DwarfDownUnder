@@ -17,7 +17,6 @@ public class TitleScene : Scene
 {
     private const string DUNGEON_TEXT = "Dwarf";
     private const string DOWN_UNDER_TEXT = "Down Under";
-    // private const string PRESS_ENTER_TEXT = "Press Enter To Start";
 
     // The font used to render the title text.
     private SpriteFont _font5x;
