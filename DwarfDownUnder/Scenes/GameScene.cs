@@ -53,6 +53,15 @@ public class GameScene : Scene
     // The current state of the game.
     private GameState _state;
 
+    // The grayscale shader effect.
+    private Effect _grayscaleEffect;
+
+    // The amount of saturation to provide the grayscale shader effect.
+    private float _saturation = 1.0f;
+
+    // The speed of the fade to grayscale effect.
+    private const float FADE_SPEED = 0.001f;
+
     // The font used for writing text (tile pos, tile number) - DEBUG
     private SpriteFont _font; // DEBUG
 
@@ -80,8 +89,7 @@ public class GameScene : Scene
         // can be triggered when this event is raised.
         // _dwarf.BodyCollision += OnDwarfBodyCollision;
 
-        // Create any UI elements from the root element created in previous
-        // scenes.
+        // Create any UI elements from the root element created in previous scenes.
         GumService.Default.Root.Children.Clear();
 
         // Initialize the user interface for the game scene.
@@ -176,6 +184,9 @@ public class GameScene : Scene
         // Load the collect sound effect.
         _collectSoundEffect = Content.Load<SoundEffect>("audio/collect");
 
+        // Load the grayscale shader effect.
+        _grayscaleEffect = Content.Load<Effect>("effects/grayscaleEffect");
+
         // Load the font used for writing text (tile pos, tile number) - DEBUG
         _font = Core.Content.Load<SpriteFont>("fonts/04B_30"); // DEBUG
     }
@@ -185,11 +196,17 @@ public class GameScene : Scene
         // Ensure the UI is always updated.
         _ui.Update(gameTime);
 
-        // If the game is in a game over state, immediately return back
-        // here.
-        if (_state == GameState.GameOver)
+        if (_state != GameState.Playing)
         {
-            return;
+            // The game is in either a paused or game over state, so
+            // gradually decrease the saturation to create the fading grayscale.
+            _saturation = Math.Max(0.0f, _saturation - FADE_SPEED);
+
+            // If its just a game over state, return back.
+            if (_state == GameState.GameOver)
+            {
+                return;
+            }
         }
 
         // If the pause button is pressed, toggle the pause state.
@@ -377,6 +394,9 @@ public class GameScene : Scene
 
             // And set the state to paused.
             _state = GameState.Paused;
+
+            // Set the greyscale effect saturation to 1.0f
+            _saturation = 1.0f;
         }
     }
 
@@ -387,6 +407,9 @@ public class GameScene : Scene
 
         // Set the game state to game over.
         _state = GameState.GameOver;
+
+        // Set the greyscale effect saturation to 1.0f
+        _saturation = 1.0f;
     }
 
     public override void Draw(GameTime gameTime)
@@ -394,15 +417,36 @@ public class GameScene : Scene
         // Clear the back buffer.
         Core.GraphicsDevice.Clear(Color.CornflowerBlue);
 
-        // Begin the sprite batch to prepare for rendering.
-        Core.SpriteBatch.Begin(samplerState: SamplerState.PointClamp);
+        if (_state != GameState.Playing)
+        {
+            // We are in a game over state, so apply the saturation parameter.
+            _grayscaleEffect.Parameters["Saturation"].SetValue(_saturation);
+
+            // And begin the sprite batch using the grayscale effect.
+            Core.SpriteBatch.Begin(samplerState: SamplerState.PointClamp, effect: _grayscaleEffect);
+
+            // Save current blend state and set to AlphaBlend for proper transparency
+            BlendState previousBlendState = Core.GraphicsDevice.BlendState;
+            Core.GraphicsDevice.BlendState = BlendState.AlphaBlend;
+
+            // Draw the Tiled map
+            _tiledMapRenderer.Draw(); // TODO: Does not grayscale yet
+
+            // Restore previous blend state
+            Core.GraphicsDevice.BlendState = previousBlendState;
+        }
+        else
+        {
+            // Otherwise, just begin the sprite batch as normal.
+            Core.SpriteBatch.Begin(samplerState: SamplerState.PointClamp);
+
+            // Draw the Tiled map
+            _tiledMapRenderer.Draw();
+            // _tiledMapRenderer.Draw(_dwarf._camera.GetViewMatrix());
+        }
 
         // // Draw the tilemap
         // _tilemap.Draw(Core.SpriteBatch);
-
-        // Draw the Tiled map
-        _tiledMapRenderer.Draw();
-        // _tiledMapRenderer.Draw(_dwarf._camera.GetViewMatrix());
 
         // Draw the dwarf.
         _dwarf.Draw();

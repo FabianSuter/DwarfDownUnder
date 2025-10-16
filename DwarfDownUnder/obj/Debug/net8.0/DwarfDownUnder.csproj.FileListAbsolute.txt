@@ -62,3 +62,4 @@ C:\Users\suter\02_MonoGame\DwarfDownUnder\DwarfDownUnder\bin\Debug\net8.0\Conten
 C:\Users\suter\02_MonoGame\DwarfDownUnder\DwarfDownUnder\bin\Debug\net8.0\Content\tiled\tileAtlas.xnb
 C:\Users\suter\02_MonoGame\DwarfDownUnder\DwarfDownUnder\bin\Debug\net8.0\Content\tiled\tileAtlas_0.xnb
 C:\Users\suter\02_MonoGame\DwarfDownUnder\DwarfDownUnder\bin\Debug\net8.0\Content\images\atlas_0.xnb
+C:\Users\suter\02_MonoGame\DwarfDownUnder\DwarfDownUnder\bin\Debug\net8.0\Content\effects\grayscaleEffect.xnb
