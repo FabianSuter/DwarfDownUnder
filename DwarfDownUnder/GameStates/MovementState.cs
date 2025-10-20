@@ -35,7 +35,7 @@ public abstract class MovementState
     public abstract void UpdateSprite();
 
     /// <summary>
-    /// Updates the state based on input and may set the next direction and isWalking flag, depending on user input.
+    /// Updates the state based on input and sets the next direction and isWalking flag when not transitioning to other stae.
     /// </summary>
     public abstract void UpdateState();
 }
@@ -58,7 +58,7 @@ class MovementDown : MovementState
     }
 
     /// <summary>
-    /// Updates the state based on input and may set the next direction and isWalking flag, depending on user input.
+    /// Updates the state based on input and sets the next direction and isWalking flag when not transitioning to other stae.
     /// </summary>
     public override void UpdateState()
     {
@@ -93,7 +93,7 @@ class MovementLeft : MovementState
     }
 
     /// <summary>
-    /// Updates the state based on input and may set the next direction and isWalking flag, depending on user input.
+    /// Updates the state based on input and sets the next direction and isWalking flag when not transitioning to other stae.
     /// </summary>
     public override void UpdateState()
     {
@@ -128,7 +128,7 @@ class MovementRight : MovementState
     }
 
     /// <summary>
-    /// Updates the state based on input and may set the next direction and isWalking flag, depending on user input.
+    /// Updates the state based on input and sets the next direction and isWalking flag when not transitioning to other stae.
     /// </summary>
     public override void UpdateState()
     {
@@ -163,7 +163,7 @@ class MovementUp : MovementState
     }
 
     /// <summary>
-    /// Updates the state based on input and may set the next direction and isWalking flag, depending on user input.
+    /// Updates the state based on input and sets the next direction and isWalking flag when not transitioning to other stae.
     /// </summary>
     public override void UpdateState()
     {

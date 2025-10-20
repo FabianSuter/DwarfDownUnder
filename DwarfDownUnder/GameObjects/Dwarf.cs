@@ -15,6 +15,12 @@ public class Dwarf
 
     // public Camera _camera { get; set; }
 
+    // Buffer to queue inputs input by player during input polling.
+    // private Queue<InputType> _inputBuffer;
+
+    // The maximum size of the buffer queue.
+    // private const int MAX_BUFFER_SIZE = 2;
+
     // A constant value that represents the amount of time to wait between movement updates.
     private static readonly TimeSpan s_movementTime = TimeSpan.FromMilliseconds(150);
 
@@ -35,7 +41,7 @@ public class Dwarf
     /// <summary>
     /// The dictionary of AnimatedSprites for the dwarf.
     /// </summary>
-    public Dictionary<object, AnimatedSprite> _spriteDict = [];
+    public Dictionary<string, AnimatedSprite> _spriteDict = [];
 
     /// <summary>
     /// The position of the dwarf
@@ -93,7 +99,7 @@ public class Dwarf
     /// </summary>
     /// <param name="key">Key for the added animation. Use normalized vectors</param>
     /// <param name="sprite">The AnimatedSprite to use when drawing the dwarf</param>
-    public void AddAnimation(object key, AnimatedSprite sprite)
+    public void AddAnimation(string key, AnimatedSprite sprite)
     {
         _spriteDict.Add(key, sprite);
     }
