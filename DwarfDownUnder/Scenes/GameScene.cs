@@ -45,7 +45,7 @@ public class GameScene : Scene
     private SoundEffect _collectSoundEffect;
 
     // Tracks the players score.
-    private int _score;
+    private Score _score;
 
     // The UI for the game scene.
     private GameSceneUI _ui;
@@ -148,30 +148,10 @@ public class GameScene : Scene
         PositionSpiderAwayFromDwarf();
 
         // Reset the score.
-        ResetScore();
+        _score.ResetScore();
 
         // Set the game state to playing.
         _state = GameState.Playing;
-    }
-
-    /// <summary>
-    /// Increments the player's score by the specified amount.
-    /// </summary>
-    /// <param name="amount">Amount to increase. Should be positive</param>
-    public void IncrementScore(int amount)
-    {
-        if (amount > 0)
-        {
-            _score += amount;
-        }
-    }
-
-    /// <summary>
-    /// Resets the player's score to zero.
-    /// </summary>
-    public void ResetScore()
-    {
-        _score = 0;
     }
 
     public override void LoadContent()
@@ -206,6 +186,9 @@ public class GameScene : Scene
 
         // Load the grayscale shader effect.
         _grayscaleEffect = Content.Load<Effect>("effects/grayscaleEffect");
+
+        // Initialize the score tracker.
+        _score = new Score();
 
         // Load the font used for writing text (tile pos, tile number) - DEBUG
         _font = Core.Content.Load<SpriteFont>("fonts/04B_30"); // DEBUG
@@ -271,10 +254,10 @@ public class GameScene : Scene
             _spider.RandomizeVelocity();
 
             // Increment the score.
-            IncrementScore(100);
+            _score.IncrementScore(100);
 
             // Update the score display on the UI.
-            _ui.UpdateScoreText(_score);
+            _ui.UpdateScoreText(_score.GetScore());
 
             // Play the collect sound effect.
             Core.Audio.PlaySoundEffect(_collectSoundEffect);
