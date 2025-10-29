@@ -148,10 +148,30 @@ public class GameScene : Scene
         PositionSpiderAwayFromDwarf();
 
         // Reset the score.
-        _score = 0;
+        ResetScore();
 
         // Set the game state to playing.
         _state = GameState.Playing;
+    }
+
+    /// <summary>
+    /// Increments the player's score by the specified amount.
+    /// </summary>
+    /// <param name="amount">Amount to increase. Should be positive</param>
+    public void IncrementScore(int amount)
+    {
+        if (amount > 0)
+        {
+            _score += amount;
+        }
+    }
+
+    /// <summary>
+    /// Resets the player's score to zero.
+    /// </summary>
+    public void ResetScore()
+    {
+        _score = 0;
     }
 
     public override void LoadContent()
@@ -251,7 +271,7 @@ public class GameScene : Scene
             _spider.RandomizeVelocity();
 
             // Increment the score.
-            _score += 100;
+            IncrementScore(100);
 
             // Update the score display on the UI.
             _ui.UpdateScoreText(_score);
