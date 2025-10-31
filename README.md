@@ -27,9 +27,9 @@ This project serves as an assignment for the *Advanced C#* class at [University 
 ### Fonts
 - ~~Sprite font from [Joël Carrouché](https://www.1001fonts.com/users/joelcarrouche/), currently *Norse Regular*~~
 - Sprite font *04b_30.ttf* from [dafont.com](https://www.dafont.com/04b-30.font) 
-    - Wanted to use Norse Regular but causes crashes so far, don't know why ¯\\_(ツ)_/¯
+    - I originally wanted to change the font to Norse Regular but it causes crashes so far
     - Any other font crashes apparently too, Exception throws "*fontname*_0.xnb could not be found". Searching for error hasn't helped yet.
 - Fonts in UI converted from *.ttf* to *.fnt* and *.png* with [Hiero](https://docs.flatredball.com/gum/gum-tool/gum-elements/text/use-custom-font#creating-fonts-with-hiero)
 
 ### UI
-- This project uses the *Gum* layout engine and framework, namely version `2025.8.3.3`
+- This project uses the [Gum layout engine](https://docs.flatredball.com/gum), namely version `2025.8.3.3`
