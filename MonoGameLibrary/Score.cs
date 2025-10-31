@@ -39,4 +39,20 @@ public class Score
             _score += amount;
         }
     }
+
+    /// <summary>
+    /// Decrements the score by the specified amount.
+    /// </summary>
+    /// <param name="amount">Amount to decrease. Should be positive</param>
+    public void DecrementScore(int amount)
+    {
+        if (amount > 0)
+        {
+            _score -= amount;
+            if (_score < 0)
+            {
+                _score = 0;
+            }
+        }
+    }
 }
