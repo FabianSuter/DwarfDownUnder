@@ -5,9 +5,14 @@ This project serves as an assignment for the *Advanced C#* class at [University 
 ## How to Build & Run
 - Install MonoGame on your device with the first two steps from [Getting Started](https://docs.monogame.net/articles/getting_started/index.html)
 - Clone this repository to your device
-- Install MonoGame.Extended on your device with the [Installation Guide](https://www.monogameextended.net/docs/getting-started/installation-monogame/), including the optional step with MGCB
+- For MonoGame.Extended follow these steps from the [Installation Guide](https://www.monogameextended.net/docs/getting-started/installation-monogame/):
+    - `dotnet add package MonoGame.Extended --version 5.2.0`
+    - `dotnet add package MonoGame.Extended.Content.Pipeline --version 5.2.0`
+    - You don't need to do the rest, the MGCB and the references are already correct in the repo
+- Build the project (for example in the Solution explorer)
+- The game should be runnable now
 
-After these steps you should be able to build and run the project.
+
 
 **Important:** *Clone the repo **before** doing the Extended part*
 
