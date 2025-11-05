@@ -17,11 +17,11 @@
             }
         },
         "cave_v2.tmx": {
-            "scale": 0.75,
+            "scale": 0.7687,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 613.3333333333333,
-                "y": 512.6666666666666
+                "x": 814.3619097177052,
+                "y": 375.30896318459736
             }
         },
         "cave_v3.tmx": {
@@ -53,8 +53,8 @@
     ],
     "project": "dwarfdownunder.tiled-project",
     "recentFiles": [
-        "cave_v2.tmx",
         "tileAtlas.tsx",
+        "cave_v2.tmx",
         "cave_v3.tmx",
         "tileAtlas_V2.tsx",
         "cave.tmx"
