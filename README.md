@@ -4,9 +4,12 @@ This project serves as an assignment for the *Advanced C#* class at [University 
 
 ## How to Build & Run
 - Install MonoGame on your device with the first two steps from [Getting Started](https://docs.monogame.net/articles/getting_started/index.html)
+- Clone this repository to your device
 - Install MonoGame.Extended on your device with the [Installation Guide](https://www.monogameextended.net/docs/getting-started/installation-monogame/), including the optional step with MGCB
 
 After these steps you should be able to build and run the project.
+
+**Important:** *Clone the repo **before** doing the Extended part*
 
 ## Declarations & Sources
 

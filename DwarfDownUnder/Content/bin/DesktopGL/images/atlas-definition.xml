@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas>
+    <Texture>images/atlas</Texture>
+    <Regions>
+        <Region name="dwarf-1" x="528" y="208" width="16" height="16" />
+        <Region name="dwarf-2" x="624" y="208" width="16" height="16" />
+        <Region name="bat-1" x="624" y="128" width="16" height="16" />
+        <Region name="bat-2" x="640" y="128" width="16" height="16" />
+        <Region name="bat-3" x="640" y="144" width="16" height="16" />
+        <Region name="unfocused-button" x="899" y="0" width="65" height="14" />
+        <Region name="focused-button-1" x="899" y="14" width="65" height="14" />
+        <Region name="focused-button-2" x="899" y="29" width="65" height="14" />
+        <Region name="panel-background" x="964" y="17" width="15" height="15" />
+        <Region name="slider-off-background" x="981" y="16" width="11" height="10" />
+        <Region name="slider-middle-background" x="985" y="1" width="3" height="3" />
+        <Region name="slider-max-background" x="994" y="16" width="11" height="10" />
+    </Regions>
+    <Animations>
+        <Animation name="dwarf-animation" delay="200">
+            <Frame region="dwarf-1" />
+            <Frame region="dwarf-2" />
+        </Animation>
+        <Animation name="bat-animation" delay="200">
+            <Frame region="bat-1" />
+            <Frame region="bat-2" />
+        </Animation>
+        <Animation name="focused-button-animation" delay="300">
+            <Frame region="focused-button-1" />
+            <Frame region="focused-button-2" />
+        </Animation>
+    </Animations>
+</TextureAtlas>
